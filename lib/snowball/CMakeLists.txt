@@ -34,11 +34,16 @@ ENDIF()
 SET_SOURCE_FILES_PROPERTIES(${CMAKE_CURRENT_BINARY_DIR}/parser.c GENERATED)
 SET_SOURCE_FILES_PROPERTIES(${FlexOutput} PROPERTIES OBJECT_DEPENDS ${BisonOutputHeader})
 
+SET(HEADER_FILES
+  ../../include/snowball.h
+)
 
 set(PROJECT_FILES
 	${PROJECT_FILES}
 	${BisonOutput}
 	${FlexOutput}
+	${HEADER_FILES}
+	snowball.c
 	)
 
 add_library(libsnowball SHARED ${PROJECT_FILES})

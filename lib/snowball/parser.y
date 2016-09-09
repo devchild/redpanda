@@ -1,22 +1,29 @@
 %{
 #include <stdio.h>
 #include <stdlib.h>
-extern int yylex();
-extern int yyparse();
-extern FILE* yyin;
+
 void yyerror(const char* s);
+
+#ifdef _WIN32
+#   include <io.h>
+#   ifdef _MSC_VER
+#     define isatty _isatty
+#     define fileno _fileno
+// '_isatty' : inconsistent dll linkage.  dllexport assumed.
+#     pragma warning( disable : 4273 )
+#   endif
+#endif
+
+
 %}
 
 %union {
 	int ival;
 	float fval;
-	char* cval;
 }
 
 %token<ival> T_INT
 %token<fval> T_FLOAT
-%token<cval> T_IDENT
-
 %token T_PLUS T_MINUS T_MULTIPLY T_DIVIDE T_LEFT T_RIGHT
 %token T_NEWLINE T_QUIT
 %left T_PLUS T_MINUS
@@ -25,19 +32,18 @@ void yyerror(const char* s);
 %type<ival> expression
 %type<fval> mixed_expression
 
-%start parse_unit
+%start calculation
 
 %%
 
-parse_unit: 
-	   | line
+calculation: 
+	   | calculation line
 ;
 
 line: T_NEWLINE
     | mixed_expression T_NEWLINE { printf("\tResult: %f\n", $1);}
     | expression T_NEWLINE { printf("\tResult: %i\n", $1); } 
     | T_QUIT T_NEWLINE { printf("bye!\n"); exit(0); }
-    | T_IDENT { printf("T_IDENT:%s", $1); }
 ;
 
 mixed_expression: T_FLOAT                 		 { $$ = $1; }
@@ -64,5 +70,10 @@ expression: T_INT				{ $$ = $1; }
 	  | T_LEFT expression T_RIGHT		{ $$ = $2; }
 ;
 
+
 %%
 
+void yyerror(const char* s) {
+	fprintf(stderr, "Parse error: %s\n", s);
+	exit(1);
+}

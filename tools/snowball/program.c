@@ -1,13 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-extern FILE* yyin;
-extern int yyparse();
+#include "snowball.h"
 
 int main() {
-	yyin = stdin;
+	FILE* yyin = stdin;
+	FILE* yyout = stdout;
+
 	do { 
-		yyparse();
+		parser_parse(yyin, yyout);
 	} while(!feof(yyin));
 	return 0;
 }
