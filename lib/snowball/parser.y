@@ -1,13 +1,15 @@
+%define parse.lac full
 %define parse.error verbose
-%define api.pure true
+%define api.pure full
 %locations
+%token-table
+%lex-param {void *scanner}
+%parse-param {void *scanner}
 
 %{
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-
-void yyerror(const char* s);
 
 #ifdef _WIN32
 #   include <io.h>
@@ -98,7 +100,17 @@ method:
 ;
 
 %%
-
-void yyerror (YYLTYPE *locp, char const *msg);
-	printf("Parse error: %s\n", msg);
+int
+yyerror(YYLTYPE *locp, char *msg) {
+    if (locp) {
+        fprintf(stderr, "parse error: %s (:%d.%d -> :%d.%d)\n",
+        msg,
+        locp->first_line, locp->first_column,
+        locp->last_line,  locp->last_column
+        );
+        /* todo: add some fancy ^^^^^ error handling here */
+    } else {
+        fprintf(stderr, "parse error: %s\n", msg);
+    }
+    return (0);
 }

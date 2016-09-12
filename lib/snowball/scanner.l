@@ -7,11 +7,10 @@
 %option stack
 %option warn
 %option yylineno
+%option nounistd
 
 %{
 #include <stdio.h>
-
-#define YY_DECL int yylex()
 
 #include "parser.h"
 
@@ -29,13 +28,11 @@ char* strdup(const char* str);
 
 %}
 
-%option nounistd noyywrap
-
 %%
 
 [ \t\n]					; // ignore all whitespace
-[0-9]*\.[0-9]+ 			{ yylval.cval = strdup(yytext); return T_FLOAT;}
-[0-9]+					{ yylval.cval = strdup(yytext); return T_INT;}
+[0-9]*\.[0-9]+ 			{ yylval->cval = strdup(yytext); return T_FLOAT;}
+[0-9]+					{ yylval->cval = strdup(yytext); return T_INT;}
 "end"					{ return T_END;  }
 "return"				{ return T_RETURN; }
 "def"					{ return T_DEF; }

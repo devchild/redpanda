@@ -1,11 +1,18 @@
 #include <snowball.h>
 #include "parser.h"
+#include "scanner.h"
 
-extern FILE* yyin;
-extern FILE* yyout;
 
 int parser_parse(FILE* in, FILE* out) {
-	yyin = in;
-	yyout = out;
-	return yyparse();
+    
+    int result;
+    yyscan_t scanner;
+    yylex_init(&scanner);
+    yyset_in(in, &scanner);
+    yyset_out(out, &scanner);
+    
+    
+    result = (yyparse(scanner));
+    yylex_destroy(scanner);
+    return (result);
 }
