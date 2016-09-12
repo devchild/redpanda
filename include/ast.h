@@ -1,6 +1,20 @@
 #ifndef snowball_ast_h__
 #define snowball_ast_h__
 
+enum relational_operator
+{
+    LESS,
+    LESS_OR_EQUAL,
+    GREATER,
+    GREATER_OR_EQUAL
+};
+
+enum equality_operator
+{
+    EQUAL,
+    NOT_EQUAL
+};
+
 struct ast_node // for binary/unary operators and expression lists
 {
 	int node_type;

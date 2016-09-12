@@ -7,7 +7,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#ifdef __darwin__
+#ifdef __APPLE__
 
 //
 // Copyright 2011-2014 NimbusKit

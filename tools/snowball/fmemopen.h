@@ -22,8 +22,9 @@
 extern "C" {
 #endif
     
-#if OS == MACOS
-/**
+#if defined __APPLE__
+
+ /**
  * A BSD port of the fmemopen Linux method using funopen.
  *
  * man docs for fmemopen:
@@ -50,7 +51,7 @@ FILE *fmemopen(void *buf, size_t size, const char *mode);
 }
 #endif
 
-#elif OS == __WIN_32__ || OS == __WIN_64__
+#elif _WIN32
 
 /**
  * Code based on GPL code from https://github.com/sightmachine/python-tesseract/blob/master/util-fmemopen.h

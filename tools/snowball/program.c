@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
-#ifdef _WIN32
+#if defined _WIN32 || defined __APPLE__
 #   include "fmemopen.h"
 #endif
 
-#include "snowball.h"
+#include <snowball.h>
 
 static char buffer[] = "def test_function (): "
 						"return 2+2 "
@@ -15,7 +16,7 @@ int main() {
 	FILE* stream = fmemopen(buffer, strlen(buffer), "r");
 	if (stream == NULL)
 		printf("error");
-	fseek(stream, 0, SEEK_SET);
+	seekfn(stream, 0, SEEK_SET);
 
 	FILE* yyout = stdout;
 
