@@ -1,3 +1,7 @@
+%define parse.error verbose
+%define api.pure true
+%locations
+
 %{
 #include <stdio.h>
 #include <stdlib.h>
@@ -17,9 +21,12 @@ void yyerror(const char* s);
 
 %}
 
+
 %union {
 	char* cval;
 }
+
+
 
 %token<cval> T_INT
 %token<cval> T_FLOAT
@@ -37,6 +44,8 @@ void yyerror(const char* s);
 %right T_NOT
 
 %start compile_unit
+
+
 
 %%
 
@@ -90,7 +99,6 @@ method:
 
 %%
 
-void yyerror(const char* s) {
-	fprintf(stderr, "Parse error: %s\n", s);
-	exit(1);
+void yyerror (YYLTYPE *locp, char const *msg);
+	printf("Parse error: %s\n", msg);
 }

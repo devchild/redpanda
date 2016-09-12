@@ -1,3 +1,13 @@
+%option bison-bridge
+%option bison-locations
+%option ecs
+%option nodefault
+%option noyywrap
+%option reentrant
+%option stack
+%option warn
+%option yylineno
+
 %{
 #include <stdio.h>
 

@@ -1,29 +1,43 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-#if defined _WIN32 || defined __APPLE__
-#   include "fmemopen.h"
-#endif
-
 #include <snowball.h>
 
-static char buffer[] = "def test_function (): "
-						"return 2+2 "
-						"end";
-
-int main() {
-	FILE* stream = fmemopen(buffer, strlen(buffer), "r");
-	if (stream == NULL)
-		printf("error");
-	seekfn(stream, 0, SEEK_SET);
-
-	FILE* yyout = stdout;
-
-	do { 
-		parser_parse(stream, yyout);
-	} while (!feof(stream));
-
-	scanf("continue");
+int main(int argc, char *argv[]) {
+    
+    if ( argc != 2 ) /* argc should be 2 for correct execution */
+    {
+        /* We print argv[0] assuming it is the program name */
+        printf( "usage: %s filename", argv[0] );
+    }
+    else
+    {
+        // We assume argv[1] is a filename to open
+        FILE *file = fopen( argv[1], "r" );
+        
+        /* fopen returns 0, the NULL pointer, on failure */
+        if ( file == 0 )
+        {
+            printf( "Could not open file\n" );
+        }
+        else
+        {
+            FILE* yyout = stdout;
+            int ret = parser_parse(file, yyout);
+            if (ret == 0)
+                printf("Parsing successfull.\n");
+            else if( ret == 1)
+                printf("Error while parsing: syntax error.\n");
+            else if (ret == 2)
+                printf("Error while parsing: out of memory.\n");
+            else
+                printf("Error while parsing: unknown error.\n");
+        }
+        
+        fclose(file);
+    }
+    
+    printf("Press Any Key to Continue\n");
+    getchar();
 	return 0;
 }
