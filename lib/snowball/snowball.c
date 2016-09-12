@@ -1,4 +1,4 @@
-#include "../../include/snowball.h"
+#include <snowball.h>
 #include "parser.h"
 
 extern FILE* yyin;

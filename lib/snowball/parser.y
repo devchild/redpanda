@@ -15,56 +15,60 @@ void yyerror(const char* s);
 #   endif
 #endif
 
-
 %}
 
 %union {
-	int ival;
-	float fval;
-	double dval;
+	char* cval;
 }
 
-%token<ival> T_INT
-%token<fval> T_FLOAT
+%token<cval> T_INT
+%token<cval> T_FLOAT
 %token T_PLUS T_MINUS T_MULTIPLY T_DIVIDE T_LEFT T_RIGHT T_POW
-%token T_NEWLINE T_QUIT T_END T_IDENT T_COLON T_RETURN
+%token T_END T_IDENT T_COLON T_RETURN T_DEF
+
 %left T_PLUS T_MINUS
 %left T_MULTIPLY T_DIVIDE
 %left NEG
+
+%left T_OR
+%left T_AND
+
 %right T_POW
+%right T_NOT
 
-%type<ival> expression
-
-%start calculation
+%start compile_unit
 
 %%
 
-calculation: lines_opt
+compile_unit: compile_unit_member_list_opt
 ;
 
-line: T_NEWLINE
-    | function
-    | expression T_NEWLINE { printf("\tResult: %i\n", $1); } 
-    | T_QUIT T_NEWLINE { printf("bye!\n"); exit(0); }
+compile_unit_member: method
+				   | statement
 ;
 
-lines: line
-     | lines line
+compile_unit_member_list: compile_unit_member
+						 | compile_unit_member_list compile_unit_member
 ;
 
-lines_opt: 
-	 | lines
+compile_unit_member_list_opt: 
+	 | compile_unit_member_list
 ;
 
-expression: T_FLOAT                 		 	 { $$ = $1; }
-	  | T_INT					 { $$ = $1; }
-	  | expression T_PLUS expression	 	 { $$ = $1 + $3; }
-	  | expression T_MINUS expression	 	 { $$ = $1 - $3; }
-	  | expression T_MULTIPLY expression		 { $$ = $1 * $3; }
-	  | expression T_DIVIDE expression	 	 { $$ = $1 / $3; }
-	  | T_MINUS expression %prec NEG		 { $$ = -$2; }
-	  | expression T_POW expression			 { $$ = pow($1, $3); } 
-	  | T_LEFT expression T_RIGHT			 { $$ = $2; }
+expression: T_FLOAT                 		 	
+	  | T_INT									
+	  | method_invoke_expression				
+	  | expression T_PLUS expression	 		
+	  | expression T_MINUS expression	 		
+	  | expression T_MULTIPLY expression		
+	  | expression T_DIVIDE expression	 		
+	  | T_MINUS expression %prec NEG			
+	  | expression T_POW expression				
+	  | T_LEFT expression T_RIGHT				
+;
+
+method_invoke_expression:
+	T_IDENT T_LEFT T_RIGHT
 ;
 
 statement: expression
@@ -80,8 +84,8 @@ statement_list_opt:
 		  | statement_list
 ;
 
-function:
-	T_IDENT T_LEFT T_RIGHT T_COLON statement_list_opt T_END
+method:
+	T_DEF T_IDENT T_LEFT T_RIGHT T_COLON statement_list_opt T_END
 ;
 
 %%

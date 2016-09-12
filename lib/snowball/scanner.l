@@ -15,31 +15,45 @@
 #   endif
 #endif
 
+char* strdup(const char* str);
+
 %}
 
 %option nounistd noyywrap
 
 %%
 
-[ \t]	; // ignore all whitespace
-[0-9]*\.[0-9]+ 		{yylval.fval = atof(yytext); return T_FLOAT;}
-[0-9]+			{yylval.ival = atoi(yytext); return T_INT;}
-"exit"			{return T_QUIT;}
-"quit"			{return T_QUIT; }
-"end"			{return T_END;  }
-"return"		{return T_RETURN; }
+[ \t\n]					; // ignore all whitespace
+[0-9]*\.[0-9]+ 			{ yylval.cval = strdup(yytext); return T_FLOAT;}
+[0-9]+					{ yylval.cval = strdup(yytext); return T_INT;}
+"end"					{ return T_END;  }
+"return"				{ return T_RETURN; }
+"def"					{ return T_DEF; }
+"&"						{ return T_AND; }
+"|"						{ return T_OR; }
 
-[A-Za-z_][A-Za-z0-9_]*	{return T_IDENT;} 
-\n			{return T_NEWLINE;}
-"+"			{return T_PLUS;}
-"-"			{return T_MINUS;}
-"*"			{return T_MULTIPLY;}
-"/"			{return T_DIVIDE;}
-"^"			{return T_POW;}
-"("			{return T_LEFT;}
-")"			{return T_RIGHT;}
-":"			{return T_COLON;}
+[A-Za-z_][A-Za-z0-9_]*	{ return T_IDENT;} 
+"+"						{ return T_PLUS;}
+"-"						{ return T_MINUS;}
+"*"						{ return T_MULTIPLY;}
+"/"						{ return T_DIVIDE;}
+"^"						{ return T_POW;}
+"("						{ return T_LEFT;}
+")"						{ return T_RIGHT;}
+":"						{ return T_COLON;}
+"!"						{ return T_NOT;}
 
 
 %%
+
+char* strdup(const char* str)
+{
+      char* newstr = (char*) malloc( strlen( str) + 1);
+
+      if (newstr) {
+          strcpy( newstr, str);
+      }
+
+      return newstr;
+}
 

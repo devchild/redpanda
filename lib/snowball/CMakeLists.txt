@@ -36,15 +36,19 @@ SET_SOURCE_FILES_PROPERTIES(${FlexOutput} PROPERTIES OBJECT_DEPENDS ${BisonOutpu
 
 SET(HEADER_FILES
   ../../include/snowball.h
+  ../../include/ast.h
 )
 
 set(PROJECT_FILES
+	${HEADER_FILES}
 	${PROJECT_FILES}
 	${BisonOutput}
 	${FlexOutput}
-	${HEADER_FILES}
 	snowball.c
+	ast.c
 	)
+
+include_directories(../../include)
 
 add_library(libsnowball SHARED ${PROJECT_FILES})
 
