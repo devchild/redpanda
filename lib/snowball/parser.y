@@ -1,8 +1,9 @@
-%define parse.lac full
-%define parse.error verbose
-%define api.pure full
+%defines
 %locations
 %token-table
+%define api.pure full
+%define parse.error verbose
+
 %lex-param {void *scanner}
 %parse-param {void *scanner}
 
@@ -22,7 +23,6 @@
 #endif
 
 %}
-
 
 %union {
 	char* cval;
@@ -47,19 +47,18 @@
 
 %start compile_unit
 
-
-
 %%
+
+
 
 compile_unit: compile_unit_member_list_opt
 ;
 
 compile_unit_member: method
-				   | statement
 ;
 
 compile_unit_member_list: compile_unit_member
-						 | compile_unit_member_list compile_unit_member
+						 | compile_unit_member_list error compile_unit_member
 ;
 
 compile_unit_member_list_opt: 
@@ -82,13 +81,12 @@ method_invoke_expression:
 	T_IDENT T_LEFT T_RIGHT
 ;
 
-statement: expression
-	 | T_RETURN expression
-	 | T_RETURN
+statement:
+	 T_RETURN expression
 ;
 
 statement_list: statement
-	      | statement_list statement
+	      | statement_list error statement
 ;
 
 statement_list_opt:
@@ -96,21 +94,13 @@ statement_list_opt:
 ;
 
 method:
-	T_DEF T_IDENT T_LEFT T_RIGHT T_COLON statement_list_opt T_END
+	T_DEF T_IDENT T_LEFT T_RIGHT T_COLON statement_list_opt T_END 
 ;
 
 %%
-int
-yyerror(YYLTYPE *locp, char *msg) {
-    if (locp) {
-        fprintf(stderr, "parse error: %s (:%d.%d -> :%d.%d)\n",
-        msg,
-        locp->first_line, locp->first_column,
-        locp->last_line,  locp->last_column
-        );
-        /* todo: add some fancy ^^^^^ error handling here */
-    } else {
-        fprintf(stderr, "parse error: %s\n", msg);
-    }
-    return (0);
+
+int yyerror (YYLTYPE *locp, void* scanner, char const *msg)
+{
+  printf ("%s\n", msg);
+  return 0;
 }

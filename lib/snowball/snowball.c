@@ -8,8 +8,8 @@ int parser_parse(FILE* in, FILE* out) {
     int result;
     yyscan_t scanner;
     yylex_init(&scanner);
-    yyset_in(in, &scanner);
-    yyset_out(out, &scanner);
+    yyset_in(in, scanner);
+    yyset_out(out, scanner);
     
     
     result = (yyparse(scanner));

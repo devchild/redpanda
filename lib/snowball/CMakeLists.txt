@@ -9,6 +9,7 @@ IF(FLEX_FOUND)
     ADD_CUSTOM_COMMAND(
       OUTPUT ${FlexOutput}
       COMMAND ${FLEX_EXECUTABLE}
+	          --nounistd
               --outfile=${FlexOutput}
 	      --header-file=${FlexOutputHeader}
               ${CMAKE_CURRENT_SOURCE_DIR}/scanner.l

@@ -1,13 +1,9 @@
 %option bison-bridge
 %option bison-locations
-%option ecs
-%option nodefault
-%option noyywrap
-%option reentrant
-%option stack
-%option warn
-%option yylineno
 %option nounistd
+%option reentrant
+%option noyywrap
+%option yylineno
 
 %{
 #include <stdio.h>
@@ -23,6 +19,12 @@
 #     pragma warning( disable : 4273 )
 #   endif
 #endif
+
+// support locationtracking
+#define YY_USER_ACTION	yylloc->first_line = yylloc->last_line = yyget_lineno(yyscanner); \
+						yylloc->first_column = yyget_column(yyscanner); \
+						yylloc->last_column = yyget_column(yyscanner) + yyget_leng(yyscanner) - 1; \
+						yyset_column(yyget_column(yyscanner) + yyget_leng(yyscanner), yyscanner);
 
 char* strdup(const char* str);
 
@@ -49,7 +51,7 @@ char* strdup(const char* str);
 ")"						{ return T_RIGHT;}
 ":"						{ return T_COLON;}
 "!"						{ return T_NOT;}
-
+.						{ return yytext; }
 
 %%
 
