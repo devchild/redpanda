@@ -35,23 +35,29 @@ char* strdup(const char* str);
 [ \t\n]					; // ignore all whitespace
 [0-9]*\.[0-9]+ 			{ yylval->cval = strdup(yytext); return T_FLOAT;}
 [0-9]+					{ yylval->cval = strdup(yytext); return T_INT;}
-"end"					{ return T_END;  }
+"end"					{ return BLOCK_END;  }
 "return"				{ return T_RETURN; }
 "def"					{ return T_DEF; }
 "&"						{ return T_AND; }
 "|"						{ return T_OR; }
 
 [A-Za-z_][A-Za-z0-9_]*	{ return T_IDENT;} 
+
+"**"						{ return T_POW;}
+"//"						{ return T_SQRT;}
+
 "+"						{ return T_PLUS;}
 "-"						{ return T_MINUS;}
 "*"						{ return T_MULTIPLY;}
 "/"						{ return T_DIVIDE;}
-"^"						{ return T_POW;}
-"("						{ return T_LEFT;}
-")"						{ return T_RIGHT;}
+
+
+
+"("						{ return T_LEFTP;}
+")"						{ return T_RIGHTP;}
 ":"						{ return T_COLON;}
 "!"						{ return T_NOT;}
-.						{ return yytext; }
+.						{ return yytext[0]; }
 
 %%
 
