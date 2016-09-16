@@ -50,6 +50,7 @@ char* strdup(const char* str);
 "-"						{ return T_MINUS;}
 "*"						{ return T_MULTIPLY;}
 "/"						{ return T_DIVIDE;}
+"="						{ return T_EQ;}
 
 
 

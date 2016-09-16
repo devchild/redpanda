@@ -43,6 +43,7 @@
 %token						T_MINUS   					"'-'"
 %token						T_MULTIPLY   				"'*'"
 %token						T_DIVIDE	  				"'/'"
+%token						T_EQ	  					"'='"
 %token						T_NOT	  					"'!'"
 %token						T_COLON	  					"':'"
 %token						T_LEFTP	  					"'('"
@@ -72,6 +73,7 @@ compile_unit_member_list_opt:
 ;
 
 expression: additive_expression 
+			| assign_expression
 ;
 
 primitive_expression: T_INT
@@ -79,6 +81,7 @@ primitive_expression: T_INT
 ;
 	
 primary_expression: method_invoke_expression
+	| variable_reference_expression
 	| primitive_expression
 	| T_LEFTP expression T_RIGHTP		
 ;
@@ -103,10 +106,23 @@ power_expression: unary_expression
 	| power_expression T_SQRT unary_expression
 ;
 
+assign_expression: variable_reference_expression T_EQ expression
+;
+
+expression_statement: assign_expression
+;
+
+return_statement: T_RETURN expression
+;
+
+variable_reference_expression: T_IDENT
+;
+
 method_invoke_expression: T_IDENT T_LEFTP T_RIGHTP
 ;
 
-statement: T_RETURN expression
+statement: return_statement
+		 | expression_statement
 ;
 
 statement_list: statement
