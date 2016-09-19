@@ -5,6 +5,23 @@
 %option noyywrap
 %option yylineno
 
+hex_digit              				[0-9A-Fa-f]
+
+uni_esc_seq1        			   	\\u{hex_digit}{4}
+uni_esc_seq2           				\\U{hex_digit}{8}
+uni_esc_seq            				{uni_esc_seq1}|{uni_esc_seq2}
+
+simple_esc_seq         				\\[\'\"\\0abfnrtv]
+hex_esc_seq            				\\x{hex_digit}{1,4}
+single_string_char     				[^\\\"]
+reg_string_char        				{single_string_char}|{simple_esc_seq}|{hex_esc_seq}|{uni_esc_seq}
+regular_string         				\"{reg_string_char}*\"
+single_verbatim_char   				[^\"]
+quote_esc_seq          				\"\"
+verb_string_char       				{single_verbatim_char}|{quote_esc_seq}
+verbatim_string        				@\"{verb_string_char}*\"
+string_literal         				{regular_string}|{verbatim_string}
+
 %{
 #include <stdio.h>
 
@@ -32,27 +49,42 @@ char* strdup(const char* str);
 
 %%
 
+{string_literal}		{ yylval->cval = strdup(yytext); return T_STRING; }
 [ \t\n]					; // ignore all whitespace
 [0-9]*\.[0-9]+ 			{ yylval->cval = strdup(yytext); return T_FLOAT;}
 [0-9]+					{ yylval->cval = strdup(yytext); return T_INT;}
 "end"					{ return BLOCK_END;  }
 "return"				{ return T_RETURN; }
+"else"					{ return ELSE; }
 "def"					{ return T_DEF; }
+"if"					{ return T_IF; }
 "&"						{ return T_AND; }
 "|"						{ return T_OR; }
+"?"						{ return T_QM; }
 
 [A-Za-z_][A-Za-z0-9_]*	{ return T_IDENT;} 
 
-"**"						{ return T_POW;}
-"//"						{ return T_SQRT;}
+"**"					{ return T_POW;}
+"//"					{ return T_SQRT;}
+
+"||"					{ return OP_OROR; }
+"&&"					{ return OP_ANDAND; }
+
+"<="					{ return OP_LESS_THAN_OR_EQUAL;}
+">="					{ return OP_GREATER_THAN_OR_EQUAL;}
+">>"					{ return OP_SHIFT_RIGHT;}
+"<<"					{ return OP_SHIFT_LEFT;}
+"!="					{ return T_NEQ;}
+
 
 "+"						{ return T_PLUS;}
 "-"						{ return T_MINUS;}
 "*"						{ return T_MULTIPLY;}
 "/"						{ return T_DIVIDE;}
 "="						{ return T_EQ;}
-
-
+">"						{ return T_GT;}
+"<"						{ return T_LT;}
+"^"						{ return T_XOR;}
 
 "("						{ return T_LEFTP;}
 ")"						{ return T_RIGHTP;}
