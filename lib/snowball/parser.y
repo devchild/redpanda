@@ -74,12 +74,12 @@ compile_unit: compile_unit_member_list_opt
 ;
 
 compile_unit_member: method
-					| method_invoke_expression
+	| method_invoke_expression
 ;
 
 compile_unit_member_list: compile_unit_member
-						 | compile_unit_member_list compile_unit_member
-						 | compile_unit_member_list error compile_unit_member
+	| compile_unit_member_list compile_unit_member
+	| compile_unit_member_list error compile_unit_member
 ;
 
 compile_unit_member_list_opt: 
@@ -88,7 +88,6 @@ compile_unit_member_list_opt:
 ;
 
 expression:  non_assign_expression
-			| assign_expression
 ;
 
 non_assign_expression: conditional_expression 
@@ -98,7 +97,7 @@ assign_expression: variable_reference_expression T_EQ expression
 ;
 
 conditional_expression: binary_operator_expression				
-| binary_operator_expression T_QM expression T_COLON expression
+	| binary_operator_expression T_QM expression T_COLON expression
 ;
 
 variable_reference_expression: T_IDENT
@@ -112,6 +111,7 @@ unary_expression: primary_expression
 
 primary_expression: primitive_expression
 	| method_invoke_expression
+	| variable_reference_expression
 ;
 
 primitive_expression: T_INT
@@ -135,40 +135,40 @@ power_expression: unary_expression
 ;
 
 binary_operator_expression: conditional_and_expression
-| binary_operator_expression OP_OROR conditional_and_expression
+	| binary_operator_expression OP_OROR conditional_and_expression
 ;
 
 conditional_and_expression: inclusive_or_expression	
-| conditional_and_expression OP_ANDAND inclusive_or_expression
+	| conditional_and_expression OP_ANDAND inclusive_or_expression
 ;
 
 inclusive_or_expression: exclusive_or_expression
-| inclusive_or_expression T_OR exclusive_or_expression
+	| inclusive_or_expression T_OR exclusive_or_expression
 ;
 
 exclusive_or_expression: and_expression
-| exclusive_or_expression T_XOR and_expression
+	| exclusive_or_expression T_XOR and_expression
 ;
 
 and_expression: equality_expression						
-| and_expression T_AND equality_expression
+	| and_expression T_AND equality_expression
 ;
 
 equality_expression: relational_expression
-| equality_expression T_EQ relational_expression
-| equality_expression T_NEQ relational_expression
+	| equality_expression T_EQ relational_expression
+	| equality_expression T_NEQ relational_expression
 ;
 
 relational_expression: shift_expression						
-| relational_expression T_LT shift_expression
-| relational_expression T_GT shift_expression
-| relational_expression OP_LESS_THAN_OR_EQUAL shift_expression
-| relational_expression OP_GREATER_THAN_OR_EQUAL shift_expression
+	| relational_expression T_LT shift_expression
+	| relational_expression T_GT shift_expression
+	| relational_expression OP_LESS_THAN_OR_EQUAL shift_expression
+	| relational_expression OP_GREATER_THAN_OR_EQUAL shift_expression
 ;
 
 shift_expression: additive_expression 					
-| shift_expression OP_SHIFT_LEFT additive_expression
-| shift_expression OP_SHIFT_RIGHT additive_expression
+	| shift_expression OP_SHIFT_LEFT additive_expression
+	| shift_expression OP_SHIFT_RIGHT additive_expression
 ;
 
 method_invoke_expression: method_reference_expression T_LEFTP T_RIGHTP
@@ -180,34 +180,34 @@ method_reference_expression: T_IDENT
 expression_statement: statement_expression
 ;
 
-statement_expression: assign_expression
-| method_invoke_expression
+statement_expression: method_invoke_expression 
+	| assign_expression
 ;
 
 return_statement: T_RETURN expression
 ;
 
-condition_statement: T_IF T_LEFTP binary_operator_expression T_RIGHTP T_COLON statement_list BLOCK_END
-| T_IF T_LEFTP binary_operator_expression T_RIGHTP T_COLON statement_list ELSE T_COLON statement_list BLOCK_END
+condition_statement: T_IF binary_operator_expression statement_list BLOCK_END
+	| T_IF binary_operator_expression statement_list ELSE statement_list BLOCK_END
 ;
 
 statement: expression_statement
-| condition_statement
-| return_statement
+	| condition_statement
+	| return_statement
 ;
 
 statement_list: statement
-				| statement_list statement
-				| statement_list error statement
+	| statement_list statement
+	| statement_list error statement
 ;
 
 statement_list_opt:
-		  %empty
-		  | statement_list
+	%empty
+	| statement_list
 ;
 
 method:
-	T_DEF T_IDENT T_LEFTP T_RIGHTP T_COLON statement_list_opt BLOCK_END 
+	T_DEF T_IDENT T_LEFTP T_RIGHTP statement_list_opt BLOCK_END 
 ;
 
 %%

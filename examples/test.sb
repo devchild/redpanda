@@ -1,7 +1,21 @@
-def test():
+##
+# qsdf
+# qsdf
+# qsd
+# fq
+##
+def test()
 	x = "test"
-	a = 2+2
-	return ((2+2)**3)//4 * a * x
+	# dit # is een test
+	a = 2+2 + a()
+	if a
+		return x
+	else
+		e = 2
+		c = 5 + 4
+		return y + testtest()
+	end
+	return ( ( 2 + 2 ) ** 3 ) // 4 * a * x
 end
 
 test()

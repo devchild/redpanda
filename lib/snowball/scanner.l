@@ -38,21 +38,41 @@ string_literal         				{regular_string}|{verbatim_string}
 #endif
 
 // support locationtracking
-#define YY_USER_ACTION	yylloc->first_line = yylloc->last_line = yyget_lineno(yyscanner); \
-						yylloc->first_column = yyget_column(yyscanner); \
-						yylloc->last_column = yyget_column(yyscanner) + yyget_leng(yyscanner) - 1; \
-						yyset_column(yyget_column(yyscanner) + yyget_leng(yyscanner), yyscanner);
+
+#define YY_USER_ACTION \
+    yylloc->first_line = yylloc->last_line; \
+    yylloc->first_column = yylloc->last_column; \
+    for(int i = 0; yytext[i] != '\0'; i++) { \
+        if(yytext[i] == '\n') { \
+            yylloc->last_line++; \
+            yylloc->last_column = 0; \
+        } \
+        else { \
+            yylloc->last_column++; \
+        } \
+    }
 
 char* strdup(const char* str);
 
 %}
 
+%x COMMENTS
+
 %%
 
+
+
 {string_literal}		{ yylval->cval = strdup(yytext); return T_STRING; }
+"##"				    { BEGIN(COMMENTS); }
+<COMMENTS>"##"			{ BEGIN(INITIAL); }
+<COMMENTS>[ \t\n]		; // ignore all whitespace
+<COMMENTS>. 			;
+
+"#"[^\n]*				{ /* consume //-comment */ }
+
 [ \t\n]					; // ignore all whitespace
-[0-9]*\.[0-9]+ 			{ yylval->cval = strdup(yytext); return T_FLOAT;}
-[0-9]+					{ yylval->cval = strdup(yytext); return T_INT;}
+[0-9]*\.[0-9]+ 			{ yylval->cval = strdup(yytext); return T_FLOAT; }
+[0-9]+					{ yylval->cval = strdup(yytext); return T_INT; }
 "end"					{ return BLOCK_END;  }
 "return"				{ return T_RETURN; }
 "else"					{ return ELSE; }
@@ -62,34 +82,34 @@ char* strdup(const char* str);
 "|"						{ return T_OR; }
 "?"						{ return T_QM; }
 
-[A-Za-z_][A-Za-z0-9_]*	{ return T_IDENT;} 
+[A-Za-z_][A-Za-z0-9_]*	{ return T_IDENT; }
 
-"**"					{ return T_POW;}
-"//"					{ return T_SQRT;}
+"**"					{ return T_POW; }
+"//"					{ return T_SQRT; }
 
 "||"					{ return OP_OROR; }
 "&&"					{ return OP_ANDAND; }
 
-"<="					{ return OP_LESS_THAN_OR_EQUAL;}
-">="					{ return OP_GREATER_THAN_OR_EQUAL;}
-">>"					{ return OP_SHIFT_RIGHT;}
-"<<"					{ return OP_SHIFT_LEFT;}
-"!="					{ return T_NEQ;}
+"<="					{ return OP_LESS_THAN_OR_EQUAL; }
+">="					{ return OP_GREATER_THAN_OR_EQUAL; }
+">>"					{ return OP_SHIFT_RIGHT; }
+"<<"					{ return OP_SHIFT_LEFT; }
+"!="					{ return T_NEQ; }
 
 
-"+"						{ return T_PLUS;}
-"-"						{ return T_MINUS;}
-"*"						{ return T_MULTIPLY;}
-"/"						{ return T_DIVIDE;}
-"="						{ return T_EQ;}
-">"						{ return T_GT;}
-"<"						{ return T_LT;}
-"^"						{ return T_XOR;}
+"+"						{ return T_PLUS; }
+"-"						{ return T_MINUS; }
+"*"						{ return T_MULTIPLY; }
+"/"						{ return T_DIVIDE; }
+"="						{ return T_EQ; }
+">"						{ return T_GT; }
+"<"						{ return T_LT; }
+"^"						{ return T_XOR; }
 
-"("						{ return T_LEFTP;}
-")"						{ return T_RIGHTP;}
-":"						{ return T_COLON;}
-"!"						{ return T_NOT;}
+"("						{ return T_LEFTP; }
+")"						{ return T_RIGHTP; }
+":"						{ return T_COLON; }
+"!"						{ return T_NOT; }
 .						{ return yytext[0]; }
 
 %%
@@ -104,4 +124,3 @@ char* strdup(const char* str)
 
       return newstr;
 }
-
