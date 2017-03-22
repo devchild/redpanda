@@ -41,7 +41,6 @@ SET_SOURCE_FILES_PROPERTIES(${FlexOutput} PROPERTIES OBJECT_DEPENDS ${BisonOutpu
 SET_SOURCE_FILES_PROPERTIES(${FlexOutputHeader} PROPERTIES OBJECT_DEPENDS ${BisonOutputHeader})
 
 SET(HEADER_FILES
-  ../../include/snowball.h
   ../../include/ast.h
 )
 
@@ -50,15 +49,18 @@ set(PROJECT_FILES
 	${PROJECT_FILES}
 	${BisonOutput}
 	${FlexOutput}
-	snowball.c
+	spartan.c
 	ast.c
 	)
 
-include_directories(../../include)
+include_directories(
+	../../include
+	${CMAKE_CURRENT_BINARY_DIR}
+	)
 
-add_library(libsnowball SHARED ${PROJECT_FILES})
+add_library(libspartan SHARED ${PROJECT_FILES})
 
-set_target_properties(libsnowball PROPERTIES
+set_target_properties(libspartan PROPERTIES
 	LINKER_LANGUAGE C
 	MACOSX_RPATH TRUE
 	INSTALL_NAME_DIR "@rpath"

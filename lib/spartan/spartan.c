@@ -1,6 +1,6 @@
 #include <snowball.h>
-#include "parser.h"
-#include "scanner.h"
+#include <parser.h>
+#include <scanner.h>
 
 
 int parser_parse(FILE* in, FILE* out) {
