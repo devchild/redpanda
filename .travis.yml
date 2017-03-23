@@ -5,8 +5,8 @@ compiler:
         - clang
 
 before_install:
-        - sudo apt-get update -y
-        - sudo apt-get install -y flex bison cmake
+        - sudo apt-get update -qq
+        - sudo apt-get install -qq flex bison cmake
 
 before_script:
         - mkdir build
