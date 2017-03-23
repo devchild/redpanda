@@ -11,8 +11,11 @@ compiler:
 
 before_install:
         - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install flex bison; fi
+        - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew link bison --force; fi
+        - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew link flex --force; fi
         - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get update -qq; fi
         - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install -qq flex bison cmake; fi
+
 
 before_script:
         - mkdir build
