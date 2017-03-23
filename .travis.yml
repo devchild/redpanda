@@ -5,7 +5,11 @@ compiler:
         - clang
 
 before_install:
-        - sudo apt-get install -qq flex bison
+        - sudo apt-get update -qq
+
+install:
+        - sude apt-get install -qq flex bison
+
 before_script:
         - mkdir build
         - cd build
