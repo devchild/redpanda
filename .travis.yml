@@ -8,7 +8,7 @@ before_install:
         - sudo apt-get update -qq
 
 install:
-        - sude apt-get install -qq cmake flex bison
+        - sudo apt-get install -qq cmake flex bison
 
 before_script:
         - mkdir build
