@@ -62,6 +62,7 @@ add_library(libspartan SHARED ${PROJECT_FILES})
 
 set_target_properties(libspartan PROPERTIES
 	LINKER_LANGUAGE C
+	C_STANDARD 99
 	MACOSX_RPATH TRUE
 	INSTALL_NAME_DIR "@rpath"
 	OUTPUT_NAME snowball
