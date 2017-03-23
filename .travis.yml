@@ -13,4 +13,4 @@ before_script:
         - mkdir build
 
 script: 
-        - cd build && cmake .. && make && make check
+        - cd build && cmake .. && make
