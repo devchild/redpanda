@@ -24,7 +24,7 @@ string_literal         				{regular_string}|{verbatim_string}
 
 %{
 #include <stdio.h>
-
+#include <unistd.h>
 #include "parser.h"
 
 #ifdef _WIN32
@@ -52,8 +52,7 @@ string_literal         				{regular_string}|{verbatim_string}
         } \
     }
 
-char* strdup(const char* str);
-
+#define OP(PREC) *yylval = val_new_s(yytext); return PREC
 %}
 
 %x COMMENTS
@@ -62,8 +61,8 @@ char* strdup(const char* str);
 
 
 
-{string_literal}		{ yylval->cval = strdup(yytext); return T_STRING; }
-"##"				    { BEGIN(COMMENTS); }
+{string_literal}		{ *yylval = val_new_s(yytext); return T_STRING; }
+"##"				{ BEGIN(COMMENTS); }
 <COMMENTS>"##"			{ BEGIN(INITIAL); }
 <COMMENTS>[ \t\n]		; // ignore all whitespace
 <COMMENTS>. 			;
@@ -71,8 +70,8 @@ char* strdup(const char* str);
 "#"[^\n]*				{ /* consume //-comment */ }
 
 [ \t\n]					; // ignore all whitespace
-[0-9]*\.[0-9]+ 			{ yylval->cval = strdup(yytext); return T_FLOAT; }
-[0-9]+					{ yylval->cval = strdup(yytext); return T_INT; }
+[0-9]*\.[0-9]+ 			{ *yylval = val_new_int(yytext); return T_FLOAT; }
+[0-9]+					{ *yylval = val_new_int(yytext); return T_INT; }
 "end"					{ return BLOCK_END;  }
 "return"				{ return T_RETURN; }
 "else"					{ return ELSE; }
@@ -114,13 +113,3 @@ char* strdup(const char* str);
 
 %%
 
-char* strdup(const char* str)
-{
-      char* newstr = (char*) malloc( strlen( str) + 1);
-
-      if (newstr) {
-          strcpy( newstr, str);
-      }
-
-      return newstr;
-}

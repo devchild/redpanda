@@ -3,13 +3,23 @@
 %define api.pure full
 %define parse.error verbose
 
-%lex-param {void *scanner}
-%parse-param {void *scanner}
+%lex-param   { yyscan_t scanner }
+%parse-param { yyscan_t scanner }
+%parse-param { val_callback_t callback }
 
-%{
+%code requires {
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <val.h>
+
+#define YYSTYPE val_ptr
+
+#ifndef YY_TYPEDEF_YY_SCANNER_T
+#define YY_TYPEDEF_YY_SCANNER_T
+  typedef void *yyscan_t;
+#endif
 
 #ifdef _WIN32
 #   include <io.h>
@@ -21,10 +31,13 @@
 #   endif
 #endif
 
-%}
+}
 
-%union {
-	char* cval;
+%code {
+#include <scanner.h>
+int yyerror(YYLTYPE * location, yyscan_t scanner, val_callback_t callback, const char *msg) {
+  return 0;
+}
 }
 
 %token        				END      0 					"end-of-file"
@@ -70,7 +83,7 @@
 
 %%
 
-compile_unit: compile_unit_member_list_opt
+compile_unit: compile_unit_member_list_opt { callback(val_append(val_new_s(0), val_new_s("1")) ); }
 ;
 
 compile_unit_member: method
@@ -212,10 +225,4 @@ method:
 
 %%
 
-int yyerror (YYLTYPE *locp, void* scanner, char const *msg)
-{
-  printf ("(%d:%d) %s\n", locp->first_line, locp->first_column, msg);
 
-  //printf ("%s\n", msg);
-  return 0;
-}

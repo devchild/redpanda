@@ -54,6 +54,7 @@ set(PROJECT_FILES
 	${FlexOutput}
 	spartan.c
 	ast.c
+	val.c
 	)
 
 include_directories(
@@ -68,7 +69,7 @@ set_target_properties(libspartan PROPERTIES
 	C_STANDARD 99
 	MACOSX_RPATH TRUE
 	INSTALL_NAME_DIR "@rpath"
-	OUTPUT_NAME snowball
+	OUTPUT_NAME spartan
 	INSTALL_RPATH_USE_LINK_PATH TRUE
 	)
 
