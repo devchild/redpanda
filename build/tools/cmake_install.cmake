@@ -1,4 +1,4 @@
-# Install script for directory: /Users/mario/Projects/spartan/tools
+# Install script for directory: /Users/mario/Projects/redpanda/tools
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,7 +34,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/Users/mario/Projects/spartan/build/tools/spartan/cmake_install.cmake")
+  include("/Users/mario/Projects/redpanda/build/tools/redpanda/cmake_install.cmake")
 
 endif()
 

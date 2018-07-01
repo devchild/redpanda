@@ -10,35 +10,35 @@ The output was:
 
 Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
 
-The C compiler identification is AppleClang, found in "/Users/mario/Projects/spartan/build/CMakeFiles/3.11.3/CompilerIdC/a.out"
+The C compiler identification is AppleClang, found in "/Users/mario/Projects/redpanda/build/CMakeFiles/3.11.3/CompilerIdC/a.out"
 
 Determining if the C compiler works passed with the following output:
-Change Dir: /Users/mario/Projects/spartan/build/CMakeFiles/CMakeTmp
+Change Dir: /Users/mario/Projects/redpanda/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_2999d/fast"
-/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_2999d.dir/build.make CMakeFiles/cmTC_2999d.dir/build
-Building C object CMakeFiles/cmTC_2999d.dir/testCCompiler.c.o
-/usr/bin/clang    -o CMakeFiles/cmTC_2999d.dir/testCCompiler.c.o   -c /Users/mario/Projects/spartan/build/CMakeFiles/CMakeTmp/testCCompiler.c
-Linking C executable cmTC_2999d
-/usr/local/Cellar/cmake/3.11.3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2999d.dir/link.txt --verbose=1
-/usr/bin/clang   -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_2999d.dir/testCCompiler.c.o  -o cmTC_2999d 
+Run Build Command:"/usr/bin/make" "cmTC_50b12/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_50b12.dir/build.make CMakeFiles/cmTC_50b12.dir/build
+Building C object CMakeFiles/cmTC_50b12.dir/testCCompiler.c.o
+/usr/bin/clang    -o CMakeFiles/cmTC_50b12.dir/testCCompiler.c.o   -c /Users/mario/Projects/redpanda/build/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_50b12
+/usr/local/Cellar/cmake/3.11.3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_50b12.dir/link.txt --verbose=1
+/usr/bin/clang   -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_50b12.dir/testCCompiler.c.o  -o cmTC_50b12 
 
 
 Detecting C compiler ABI info compiled with the following output:
-Change Dir: /Users/mario/Projects/spartan/build/CMakeFiles/CMakeTmp
+Change Dir: /Users/mario/Projects/redpanda/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_aeea3/fast"
-/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_aeea3.dir/build.make CMakeFiles/cmTC_aeea3.dir/build
-Building C object CMakeFiles/cmTC_aeea3.dir/CMakeCCompilerABI.c.o
-/usr/bin/clang    -o CMakeFiles/cmTC_aeea3.dir/CMakeCCompilerABI.c.o   -c /usr/local/Cellar/cmake/3.11.3/share/cmake/Modules/CMakeCCompilerABI.c
-Linking C executable cmTC_aeea3
-/usr/local/Cellar/cmake/3.11.3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_aeea3.dir/link.txt --verbose=1
-/usr/bin/clang   -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_aeea3.dir/CMakeCCompilerABI.c.o  -o cmTC_aeea3 
+Run Build Command:"/usr/bin/make" "cmTC_cb575/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_cb575.dir/build.make CMakeFiles/cmTC_cb575.dir/build
+Building C object CMakeFiles/cmTC_cb575.dir/CMakeCCompilerABI.c.o
+/usr/bin/clang    -o CMakeFiles/cmTC_cb575.dir/CMakeCCompilerABI.c.o   -c /usr/local/Cellar/cmake/3.11.3/share/cmake/Modules/CMakeCCompilerABI.c
+Linking C executable cmTC_cb575
+/usr/local/Cellar/cmake/3.11.3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_cb575.dir/link.txt --verbose=1
+/usr/bin/clang   -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_cb575.dir/CMakeCCompilerABI.c.o  -o cmTC_cb575 
 Apple LLVM version 9.1.0 (clang-902.0.39.2)
 Target: x86_64-apple-darwin17.6.0
 Thread model: posix
 InstalledDir: /Library/Developer/CommandLineTools/usr/bin
- "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -lto_library /Library/Developer/CommandLineTools/usr/lib/libLTO.dylib -dynamic -arch x86_64 -macosx_version_min 10.13.0 -o cmTC_aeea3 -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_aeea3.dir/CMakeCCompilerABI.c.o -lSystem /Library/Developer/CommandLineTools/usr/lib/clang/9.1.0/lib/darwin/libclang_rt.osx.a
+ "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -lto_library /Library/Developer/CommandLineTools/usr/lib/libLTO.dylib -dynamic -arch x86_64 -macosx_version_min 10.13.0 -o cmTC_cb575 -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_cb575.dir/CMakeCCompilerABI.c.o -lSystem /Library/Developer/CommandLineTools/usr/lib/clang/9.1.0/lib/darwin/libclang_rt.osx.a
 @(#)PROGRAM:ld  PROJECT:ld64-351.8
 configured to support archs: armv6 armv7 armv7s arm64 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em (tvOS)
 Library search paths:
@@ -51,20 +51,20 @@ Framework search paths:
 
 Parsed C implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
-  ignore line: [Change Dir: /Users/mario/Projects/spartan/build/CMakeFiles/CMakeTmp]
+  ignore line: [Change Dir: /Users/mario/Projects/redpanda/build/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_aeea3/fast"]
-  ignore line: [/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_aeea3.dir/build.make CMakeFiles/cmTC_aeea3.dir/build]
-  ignore line: [Building C object CMakeFiles/cmTC_aeea3.dir/CMakeCCompilerABI.c.o]
-  ignore line: [/usr/bin/clang    -o CMakeFiles/cmTC_aeea3.dir/CMakeCCompilerABI.c.o   -c /usr/local/Cellar/cmake/3.11.3/share/cmake/Modules/CMakeCCompilerABI.c]
-  ignore line: [Linking C executable cmTC_aeea3]
-  ignore line: [/usr/local/Cellar/cmake/3.11.3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_aeea3.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/clang   -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_aeea3.dir/CMakeCCompilerABI.c.o  -o cmTC_aeea3 ]
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_cb575/fast"]
+  ignore line: [/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_cb575.dir/build.make CMakeFiles/cmTC_cb575.dir/build]
+  ignore line: [Building C object CMakeFiles/cmTC_cb575.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/usr/bin/clang    -o CMakeFiles/cmTC_cb575.dir/CMakeCCompilerABI.c.o   -c /usr/local/Cellar/cmake/3.11.3/share/cmake/Modules/CMakeCCompilerABI.c]
+  ignore line: [Linking C executable cmTC_cb575]
+  ignore line: [/usr/local/Cellar/cmake/3.11.3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_cb575.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/clang   -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_cb575.dir/CMakeCCompilerABI.c.o  -o cmTC_cb575 ]
   ignore line: [Apple LLVM version 9.1.0 (clang-902.0.39.2)]
   ignore line: [Target: x86_64-apple-darwin17.6.0]
   ignore line: [Thread model: posix]
   ignore line: [InstalledDir: /Library/Developer/CommandLineTools/usr/bin]
-  link line: [ "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -lto_library /Library/Developer/CommandLineTools/usr/lib/libLTO.dylib -dynamic -arch x86_64 -macosx_version_min 10.13.0 -o cmTC_aeea3 -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_aeea3.dir/CMakeCCompilerABI.c.o -lSystem /Library/Developer/CommandLineTools/usr/lib/clang/9.1.0/lib/darwin/libclang_rt.osx.a]
+  link line: [ "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -lto_library /Library/Developer/CommandLineTools/usr/lib/libLTO.dylib -dynamic -arch x86_64 -macosx_version_min 10.13.0 -o cmTC_cb575 -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_cb575.dir/CMakeCCompilerABI.c.o -lSystem /Library/Developer/CommandLineTools/usr/lib/clang/9.1.0/lib/darwin/libclang_rt.osx.a]
     arg [/Library/Developer/CommandLineTools/usr/bin/ld] ==> ignore
     arg [-demangle] ==> ignore
     arg [-lto_library] ==> ignore, skip following value
@@ -75,11 +75,11 @@ Parsed C implicit link information from above output:
     arg [-macosx_version_min] ==> ignore
     arg [10.13.0] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_aeea3] ==> ignore
+    arg [cmTC_cb575] ==> ignore
     arg [-search_paths_first] ==> ignore
     arg [-headerpad_max_install_names] ==> ignore
     arg [-v] ==> ignore
-    arg [CMakeFiles/cmTC_aeea3.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [CMakeFiles/cmTC_cb575.dir/CMakeCCompilerABI.c.o] ==> ignore
     arg [-lSystem] ==> lib [System]
     arg [/Library/Developer/CommandLineTools/usr/lib/clang/9.1.0/lib/darwin/libclang_rt.osx.a] ==> lib [/Library/Developer/CommandLineTools/usr/lib/clang/9.1.0/lib/darwin/libclang_rt.osx.a]
   Library search paths: [;/usr/lib;/usr/local/lib]
@@ -98,15 +98,15 @@ Parsed C implicit link information from above output:
 
 
 Detecting C [-std=c11] compiler features compiled with the following output:
-Change Dir: /Users/mario/Projects/spartan/build/CMakeFiles/CMakeTmp
+Change Dir: /Users/mario/Projects/redpanda/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_a5b65/fast"
-/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_a5b65.dir/build.make CMakeFiles/cmTC_a5b65.dir/build
-Building C object CMakeFiles/cmTC_a5b65.dir/feature_tests.c.o
-/usr/bin/clang   -std=c11 -o CMakeFiles/cmTC_a5b65.dir/feature_tests.c.o   -c /Users/mario/Projects/spartan/build/CMakeFiles/feature_tests.c
-Linking C executable cmTC_a5b65
-/usr/local/Cellar/cmake/3.11.3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a5b65.dir/link.txt --verbose=1
-/usr/bin/clang   -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_a5b65.dir/feature_tests.c.o  -o cmTC_a5b65 
+Run Build Command:"/usr/bin/make" "cmTC_bc4bd/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_bc4bd.dir/build.make CMakeFiles/cmTC_bc4bd.dir/build
+Building C object CMakeFiles/cmTC_bc4bd.dir/feature_tests.c.o
+/usr/bin/clang   -std=c11 -o CMakeFiles/cmTC_bc4bd.dir/feature_tests.c.o   -c /Users/mario/Projects/redpanda/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_bc4bd
+/usr/local/Cellar/cmake/3.11.3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_bc4bd.dir/link.txt --verbose=1
+/usr/bin/clang   -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_bc4bd.dir/feature_tests.c.o  -o cmTC_bc4bd 
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -116,15 +116,15 @@ Linking C executable cmTC_a5b65
 
 
 Detecting C [-std=c99] compiler features compiled with the following output:
-Change Dir: /Users/mario/Projects/spartan/build/CMakeFiles/CMakeTmp
+Change Dir: /Users/mario/Projects/redpanda/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_4f6e2/fast"
-/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_4f6e2.dir/build.make CMakeFiles/cmTC_4f6e2.dir/build
-Building C object CMakeFiles/cmTC_4f6e2.dir/feature_tests.c.o
-/usr/bin/clang   -std=c99 -o CMakeFiles/cmTC_4f6e2.dir/feature_tests.c.o   -c /Users/mario/Projects/spartan/build/CMakeFiles/feature_tests.c
-Linking C executable cmTC_4f6e2
-/usr/local/Cellar/cmake/3.11.3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4f6e2.dir/link.txt --verbose=1
-/usr/bin/clang   -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_4f6e2.dir/feature_tests.c.o  -o cmTC_4f6e2 
+Run Build Command:"/usr/bin/make" "cmTC_7ed68/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_7ed68.dir/build.make CMakeFiles/cmTC_7ed68.dir/build
+Building C object CMakeFiles/cmTC_7ed68.dir/feature_tests.c.o
+/usr/bin/clang   -std=c99 -o CMakeFiles/cmTC_7ed68.dir/feature_tests.c.o   -c /Users/mario/Projects/redpanda/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_7ed68
+/usr/local/Cellar/cmake/3.11.3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7ed68.dir/link.txt --verbose=1
+/usr/bin/clang   -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_7ed68.dir/feature_tests.c.o  -o cmTC_7ed68 
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -134,15 +134,15 @@ Linking C executable cmTC_4f6e2
 
 
 Detecting C [-std=c90] compiler features compiled with the following output:
-Change Dir: /Users/mario/Projects/spartan/build/CMakeFiles/CMakeTmp
+Change Dir: /Users/mario/Projects/redpanda/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_a6f1a/fast"
-/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_a6f1a.dir/build.make CMakeFiles/cmTC_a6f1a.dir/build
-Building C object CMakeFiles/cmTC_a6f1a.dir/feature_tests.c.o
-/usr/bin/clang   -std=c90 -o CMakeFiles/cmTC_a6f1a.dir/feature_tests.c.o   -c /Users/mario/Projects/spartan/build/CMakeFiles/feature_tests.c
-Linking C executable cmTC_a6f1a
-/usr/local/Cellar/cmake/3.11.3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a6f1a.dir/link.txt --verbose=1
-/usr/bin/clang   -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_a6f1a.dir/feature_tests.c.o  -o cmTC_a6f1a 
+Run Build Command:"/usr/bin/make" "cmTC_62d08/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_62d08.dir/build.make CMakeFiles/cmTC_62d08.dir/build
+Building C object CMakeFiles/cmTC_62d08.dir/feature_tests.c.o
+/usr/bin/clang   -std=c90 -o CMakeFiles/cmTC_62d08.dir/feature_tests.c.o   -c /Users/mario/Projects/redpanda/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_62d08
+/usr/local/Cellar/cmake/3.11.3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_62d08.dir/link.txt --verbose=1
+/usr/bin/clang   -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_62d08.dir/feature_tests.c.o  -o cmTC_62d08 
 
 
     Feature record: C_FEATURE:1c_function_prototypes

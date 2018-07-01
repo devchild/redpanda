@@ -1,5 +1,5 @@
-#ifndef snowball_ast_h__
-#define snowball_ast_h__
+#ifndef redpanda_ast_h__
+#define redpanda_ast_h__
 
 enum relational_operator
 {

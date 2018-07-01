@@ -1,1 +1,0 @@
-/usr/bin/clang -g -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/spartan.dir/program.c.o  -o ../../bin/spartan -Wl,-rpath,/Users/mario/Projects/spartan/build/lib ../../lib/libspartan.dylib 

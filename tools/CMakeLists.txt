@@ -1,1 +1,1 @@
-add_subdirectory(spartan)
+add_subdirectory(redpanda)

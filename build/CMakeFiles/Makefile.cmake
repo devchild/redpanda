@@ -11,9 +11,9 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.11.3/CMakeCCompiler.cmake"
   "CMakeFiles/3.11.3/CMakeSystem.cmake"
   "../lib/CMakeLists.txt"
-  "../lib/spartan/CMakeLists.txt"
+  "../lib/redpanda/CMakeLists.txt"
   "../tools/CMakeLists.txt"
-  "../tools/spartan/CMakeLists.txt"
+  "../tools/redpanda/CMakeLists.txt"
   "/usr/local/Cellar/cmake/3.11.3/share/cmake/Modules/CMakeCInformation.cmake"
   "/usr/local/Cellar/cmake/3.11.3/share/cmake/Modules/CMakeCommonLanguageInclude.cmake"
   "/usr/local/Cellar/cmake/3.11.3/share/cmake/Modules/CMakeGenericSystem.cmake"
@@ -47,13 +47,13 @@ set(CMAKE_MAKEFILE_OUTPUTS
 set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/CMakeDirectoryInformation.cmake"
   "tools/CMakeFiles/CMakeDirectoryInformation.cmake"
-  "tools/spartan/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "tools/redpanda/CMakeFiles/CMakeDirectoryInformation.cmake"
   "lib/CMakeFiles/CMakeDirectoryInformation.cmake"
-  "lib/spartan/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "lib/redpanda/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "tools/spartan/CMakeFiles/spartan.dir/DependInfo.cmake"
-  "lib/spartan/CMakeFiles/libspartan.dir/DependInfo.cmake"
+  "tools/redpanda/CMakeFiles/redpanda.dir/DependInfo.cmake"
+  "lib/redpanda/CMakeFiles/libredpanda.dir/DependInfo.cmake"
   )

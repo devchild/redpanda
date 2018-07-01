@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../tools/redpanda/../../include/redpanda.h
+stdio.h
+-
+
+/Users/mario/Projects/redpanda/tools/redpanda/program.c
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+redpanda.h
+-
+

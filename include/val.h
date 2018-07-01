@@ -1,5 +1,5 @@
-#ifndef snowball_val_h__
-#define snowball_val_h__
+#ifndef redpanda_val_h__
+#define redpanda_val_h__
 struct val_s {
   int type;
   struct {

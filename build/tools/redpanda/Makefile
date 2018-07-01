@@ -80,14 +80,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/mario/Projects/redpanda/build/CMakeFiles /Users/mario/Projects/redpanda/build/CMakeFiles/progress.marks
-	$(MAKE) -f CMakeFiles/Makefile2 all
+	cd /Users/mario/Projects/redpanda/build && $(CMAKE_COMMAND) -E cmake_progress_start /Users/mario/Projects/redpanda/build/CMakeFiles /Users/mario/Projects/redpanda/build/tools/redpanda/CMakeFiles/progress.marks
+	cd /Users/mario/Projects/redpanda/build && $(MAKE) -f CMakeFiles/Makefile2 tools/redpanda/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/mario/Projects/redpanda/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	$(MAKE) -f CMakeFiles/Makefile2 clean
+	cd /Users/mario/Projects/redpanda/build && $(MAKE) -f CMakeFiles/Makefile2 tools/redpanda/clean
 .PHONY : clean
 
 # The main clean target
@@ -97,44 +97,60 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	$(MAKE) -f CMakeFiles/Makefile2 preinstall
+	cd /Users/mario/Projects/redpanda/build && $(MAKE) -f CMakeFiles/Makefile2 tools/redpanda/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	$(MAKE) -f CMakeFiles/Makefile2 preinstall
+	cd /Users/mario/Projects/redpanda/build && $(MAKE) -f CMakeFiles/Makefile2 tools/redpanda/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	$(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /Users/mario/Projects/redpanda/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
-#=============================================================================
-# Target rules for targets named redpanda
+# Convenience name for target.
+tools/redpanda/CMakeFiles/redpanda.dir/rule:
+	cd /Users/mario/Projects/redpanda/build && $(MAKE) -f CMakeFiles/Makefile2 tools/redpanda/CMakeFiles/redpanda.dir/rule
+.PHONY : tools/redpanda/CMakeFiles/redpanda.dir/rule
 
-# Build rule for target.
-redpanda: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 redpanda
+# Convenience name for target.
+redpanda: tools/redpanda/CMakeFiles/redpanda.dir/rule
+
 .PHONY : redpanda
 
 # fast build rule for target.
 redpanda/fast:
-	$(MAKE) -f tools/redpanda/CMakeFiles/redpanda.dir/build.make tools/redpanda/CMakeFiles/redpanda.dir/build
+	cd /Users/mario/Projects/redpanda/build && $(MAKE) -f tools/redpanda/CMakeFiles/redpanda.dir/build.make tools/redpanda/CMakeFiles/redpanda.dir/build
 .PHONY : redpanda/fast
 
-#=============================================================================
-# Target rules for targets named libredpanda
+program.o: program.c.o
 
-# Build rule for target.
-libredpanda: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 libredpanda
-.PHONY : libredpanda
+.PHONY : program.o
 
-# fast build rule for target.
-libredpanda/fast:
-	$(MAKE) -f lib/redpanda/CMakeFiles/libredpanda.dir/build.make lib/redpanda/CMakeFiles/libredpanda.dir/build
-.PHONY : libredpanda/fast
+# target to build an object file
+program.c.o:
+	cd /Users/mario/Projects/redpanda/build && $(MAKE) -f tools/redpanda/CMakeFiles/redpanda.dir/build.make tools/redpanda/CMakeFiles/redpanda.dir/program.c.o
+.PHONY : program.c.o
+
+program.i: program.c.i
+
+.PHONY : program.i
+
+# target to preprocess a source file
+program.c.i:
+	cd /Users/mario/Projects/redpanda/build && $(MAKE) -f tools/redpanda/CMakeFiles/redpanda.dir/build.make tools/redpanda/CMakeFiles/redpanda.dir/program.c.i
+.PHONY : program.c.i
+
+program.s: program.c.s
+
+.PHONY : program.s
+
+# target to generate assembly for a file
+program.c.s:
+	cd /Users/mario/Projects/redpanda/build && $(MAKE) -f tools/redpanda/CMakeFiles/redpanda.dir/build.make tools/redpanda/CMakeFiles/redpanda.dir/program.c.s
+.PHONY : program.c.s
 
 # Help Target
 help:
@@ -145,7 +161,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... redpanda"
-	@echo "... libredpanda"
+	@echo "... program.o"
+	@echo "... program.i"
+	@echo "... program.s"
 .PHONY : help
 
 
@@ -157,6 +175,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	$(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /Users/mario/Projects/redpanda/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

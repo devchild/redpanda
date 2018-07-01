@@ -1,32 +1,32 @@
 [
 {
-  "directory": "/Users/mario/Projects/spartan/build/tools/spartan",
-  "command": "/usr/bin/clang  -I/Users/mario/Projects/spartan/tools/spartan/../../include  -g   -o CMakeFiles/spartan.dir/program.c.o   -c /Users/mario/Projects/spartan/tools/spartan/program.c",
-  "file": "/Users/mario/Projects/spartan/tools/spartan/program.c"
+  "directory": "/Users/mario/Projects/redpanda/build/tools/redpanda",
+  "command": "/usr/bin/clang  -I/Users/mario/Projects/redpanda/tools/redpanda/../../include  -g   -o CMakeFiles/redpanda.dir/program.c.o   -c /Users/mario/Projects/redpanda/tools/redpanda/program.c",
+  "file": "/Users/mario/Projects/redpanda/tools/redpanda/program.c"
 },
 {
-  "directory": "/Users/mario/Projects/spartan/build/lib/spartan",
-  "command": "/usr/bin/clang -Dlibspartan_EXPORTS -I/Users/mario/Projects/spartan/lib/spartan/../../include -I/Users/mario/Projects/spartan/build/lib/spartan  -g -fPIC   -std=gnu99 -o CMakeFiles/libspartan.dir/parser.c.o   -c /Users/mario/Projects/spartan/build/lib/spartan/parser.c",
-  "file": "/Users/mario/Projects/spartan/build/lib/spartan/parser.c"
+  "directory": "/Users/mario/Projects/redpanda/build/lib/redpanda",
+  "command": "/usr/bin/clang -Dlibredpanda_EXPORTS -I/Users/mario/Projects/redpanda/lib/redpanda/../../include -I/Users/mario/Projects/redpanda/build/lib/redpanda  -g -fPIC   -std=gnu99 -o CMakeFiles/libredpanda.dir/parser.c.o   -c /Users/mario/Projects/redpanda/build/lib/redpanda/parser.c",
+  "file": "/Users/mario/Projects/redpanda/build/lib/redpanda/parser.c"
 },
 {
-  "directory": "/Users/mario/Projects/spartan/build/lib/spartan",
-  "command": "/usr/bin/clang -Dlibspartan_EXPORTS -I/Users/mario/Projects/spartan/lib/spartan/../../include -I/Users/mario/Projects/spartan/build/lib/spartan  -g -fPIC   -std=gnu99 -o CMakeFiles/libspartan.dir/scanner.c.o   -c /Users/mario/Projects/spartan/build/lib/spartan/scanner.c",
-  "file": "/Users/mario/Projects/spartan/build/lib/spartan/scanner.c"
+  "directory": "/Users/mario/Projects/redpanda/build/lib/redpanda",
+  "command": "/usr/bin/clang -Dlibredpanda_EXPORTS -I/Users/mario/Projects/redpanda/lib/redpanda/../../include -I/Users/mario/Projects/redpanda/build/lib/redpanda  -g -fPIC   -std=gnu99 -o CMakeFiles/libredpanda.dir/scanner.c.o   -c /Users/mario/Projects/redpanda/build/lib/redpanda/scanner.c",
+  "file": "/Users/mario/Projects/redpanda/build/lib/redpanda/scanner.c"
 },
 {
-  "directory": "/Users/mario/Projects/spartan/build/lib/spartan",
-  "command": "/usr/bin/clang -Dlibspartan_EXPORTS -I/Users/mario/Projects/spartan/lib/spartan/../../include -I/Users/mario/Projects/spartan/build/lib/spartan  -g -fPIC   -std=gnu99 -o CMakeFiles/libspartan.dir/spartan.c.o   -c /Users/mario/Projects/spartan/lib/spartan/spartan.c",
-  "file": "/Users/mario/Projects/spartan/lib/spartan/spartan.c"
+  "directory": "/Users/mario/Projects/redpanda/build/lib/redpanda",
+  "command": "/usr/bin/clang -Dlibredpanda_EXPORTS -I/Users/mario/Projects/redpanda/lib/redpanda/../../include -I/Users/mario/Projects/redpanda/build/lib/redpanda  -g -fPIC   -std=gnu99 -o CMakeFiles/libredpanda.dir/redpanda.c.o   -c /Users/mario/Projects/redpanda/lib/redpanda/redpanda.c",
+  "file": "/Users/mario/Projects/redpanda/lib/redpanda/redpanda.c"
 },
 {
-  "directory": "/Users/mario/Projects/spartan/build/lib/spartan",
-  "command": "/usr/bin/clang -Dlibspartan_EXPORTS -I/Users/mario/Projects/spartan/lib/spartan/../../include -I/Users/mario/Projects/spartan/build/lib/spartan  -g -fPIC   -std=gnu99 -o CMakeFiles/libspartan.dir/ast.c.o   -c /Users/mario/Projects/spartan/lib/spartan/ast.c",
-  "file": "/Users/mario/Projects/spartan/lib/spartan/ast.c"
+  "directory": "/Users/mario/Projects/redpanda/build/lib/redpanda",
+  "command": "/usr/bin/clang -Dlibredpanda_EXPORTS -I/Users/mario/Projects/redpanda/lib/redpanda/../../include -I/Users/mario/Projects/redpanda/build/lib/redpanda  -g -fPIC   -std=gnu99 -o CMakeFiles/libredpanda.dir/ast.c.o   -c /Users/mario/Projects/redpanda/lib/redpanda/ast.c",
+  "file": "/Users/mario/Projects/redpanda/lib/redpanda/ast.c"
 },
 {
-  "directory": "/Users/mario/Projects/spartan/build/lib/spartan",
-  "command": "/usr/bin/clang -Dlibspartan_EXPORTS -I/Users/mario/Projects/spartan/lib/spartan/../../include -I/Users/mario/Projects/spartan/build/lib/spartan  -g -fPIC   -std=gnu99 -o CMakeFiles/libspartan.dir/val.c.o   -c /Users/mario/Projects/spartan/lib/spartan/val.c",
-  "file": "/Users/mario/Projects/spartan/lib/spartan/val.c"
+  "directory": "/Users/mario/Projects/redpanda/build/lib/redpanda",
+  "command": "/usr/bin/clang -Dlibredpanda_EXPORTS -I/Users/mario/Projects/redpanda/lib/redpanda/../../include -I/Users/mario/Projects/redpanda/build/lib/redpanda  -g -fPIC   -std=gnu99 -o CMakeFiles/libredpanda.dir/val.c.o   -c /Users/mario/Projects/redpanda/lib/redpanda/val.c",
+  "file": "/Users/mario/Projects/redpanda/lib/redpanda/val.c"
 }
 ]

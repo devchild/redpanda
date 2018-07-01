@@ -1,0 +1,1 @@
+/usr/bin/clang -g -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/redpanda.dir/program.c.o  -o ../../bin/redpanda -Wl,-rpath,/Users/mario/Projects/redpanda/build/lib ../../lib/libspartan.dylib 
