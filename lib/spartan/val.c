@@ -8,7 +8,18 @@
 val_ptr val_new_int(char *s) {
   val_ptr r = malloc(sizeof(*r));
   r->type = T_INT;
-  r->s = strdup(s);
+  if (s) r->s = strdup(s);
+  r->nkid = 0;
+  r->kid = 0;
+  return r;
+}
+
+val_ptr val_new_op(int t, char *s) {
+  val_ptr r = malloc(sizeof(*r));
+  r->type = t;
+  if (s) r->s = strdup(s);
+  r->nkid = 0;
+  r->kid = 0;
   return r;
 }
 
@@ -21,6 +32,25 @@ val_ptr val_new_s(char *s) {
   return r;
 }
 
+val_ptr val_new_ident(char *s) {
+  val_ptr r = malloc(sizeof(*r));
+  r->type = T_IDENT;
+  if (s) r->s = strdup(s);
+  r->nkid = 0;
+  r->kid = 0;
+  return r;
+}
+
+val_ptr val_return(val_ptr v) {
+  val_ptr r = malloc(sizeof(*r));
+  r->type = T_RETURN;
+  r->s = "return";
+  r->nkid = 0;
+  r->kid = 0;
+
+  return val_append(r, v);
+}
+
 val_ptr val_append(val_ptr op, val_ptr v) {
   op->nkid++;
   op->kid = realloc(op->kid, op->nkid * sizeof(struct val_s));
@@ -29,7 +59,7 @@ val_ptr val_append(val_ptr op, val_ptr v) {
 }
 
 val_ptr val_append0(val_ptr op, ...) {
-  assert(op->type == T_STRING);
+  // assert(op->type == T_STRING);
   va_list params;
   va_start(params, op);
   for(;;) {
@@ -42,7 +72,7 @@ val_ptr val_append0(val_ptr op, ...) {
 }
 
 val_ptr val_fun(val_ptr fun, val_ptr args) {
-  assert(fun->type == T_STRING);
+  assert(fun->type == T_IDENT);
   assert(!fun->nkid);
   args->s = fun->s;
   free(fun);

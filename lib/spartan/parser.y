@@ -83,7 +83,7 @@ int yyerror(YYLTYPE * location, yyscan_t scanner, val_callback_t callback, const
 
 %%
 
-compile_unit: compile_unit_member_list_opt { callback(val_append(val_new_s(0), val_new_s("1")) ); }
+compile_unit: compile_unit_member_list_opt { callback($1); }
 ;
 
 compile_unit_member: method
@@ -133,55 +133,97 @@ primitive_expression: T_INT
 ;
 
 additive_expression: multiplicative_expression
-	| additive_expression T_PLUS multiplicative_expression
-	| additive_expression T_MINUS multiplicative_expression
+	| additive_expression T_PLUS multiplicative_expression 	{ 
+																$$ = val_append0($2, $1, $3, 0); 
+															}
+	| additive_expression T_MINUS multiplicative_expression { 
+																$$ = val_append0($2, $1, $3, 0);
+															}
 ;
 
 multiplicative_expression: power_expression
-	| multiplicative_expression T_MULTIPLY power_expression
-	| multiplicative_expression T_DIVIDE power_expression
+	| multiplicative_expression T_MULTIPLY power_expression { 
+																$$ = val_append0($2, $1, $3, 0); 
+															}
+	| multiplicative_expression T_DIVIDE power_expression 	{ 
+																$$ = val_append0($2, $1, $3, 0); 
+															}
 ;
 
 power_expression: unary_expression
-	| power_expression T_POW unary_expression
-	| power_expression T_SQRT unary_expression
+	| power_expression T_POW unary_expression				{ 
+																$$ = val_append0($2, $1, $3, 0); 
+															}
+	| power_expression T_SQRT unary_expression 				{ 
+																$$ = val_append0($2, $1, $3, 0); 
+															}
 ;
 
 binary_operator_expression: conditional_and_expression
-	| binary_operator_expression OP_OROR conditional_and_expression
+	| binary_operator_expression OP_OROR conditional_and_expression  	
+															{ 
+																$$ = val_append0($2, $1, $3, 0); 
+															}
 ;
 
 conditional_and_expression: inclusive_or_expression	
 	| conditional_and_expression OP_ANDAND inclusive_or_expression
+															{ 
+																$$ = val_append0($2, $1, $3, 0); 
+															}
 ;
 
 inclusive_or_expression: exclusive_or_expression
-	| inclusive_or_expression T_OR exclusive_or_expression
+	| inclusive_or_expression T_OR exclusive_or_expression 	{ 
+																$$ = val_append0($2, $1, $3, 0); 
+															}
 ;
 
 exclusive_or_expression: and_expression
-	| exclusive_or_expression T_XOR and_expression
+	| exclusive_or_expression T_XOR and_expression 			{ 
+																$$ = val_append0($2, $1, $3, 0); 
+															}
 ;
 
 and_expression: equality_expression						
-	| and_expression T_AND equality_expression
+	| and_expression T_AND equality_expression				{ 
+																$$ = val_append0($2, $1, $3, 0); 
+															}
 ;
 
 equality_expression: relational_expression
-	| equality_expression T_EQ relational_expression
-	| equality_expression T_NEQ relational_expression
+	| equality_expression T_EQ relational_expression		{ 
+																$$ = val_append0($2, $1, $3, 0); 
+															}
+	| equality_expression T_NEQ relational_expression  		{ 
+																$$ = val_append0($2, $1, $3, 0); 
+															}
 ;
 
 relational_expression: shift_expression						
-	| relational_expression T_LT shift_expression
-	| relational_expression T_GT shift_expression
-	| relational_expression OP_LESS_THAN_OR_EQUAL shift_expression
-	| relational_expression OP_GREATER_THAN_OR_EQUAL shift_expression
+	| relational_expression T_LT shift_expression 			{ 
+																$$ = val_append0($2, $1, $3, 0); 
+															}
+	| relational_expression T_GT shift_expression 			{ 
+																$$ = val_append0($2, $1, $3, 0); 
+															}
+	| relational_expression OP_LESS_THAN_OR_EQUAL shift_expression 	
+															{ 
+																$$ = val_append0($2, $1, $3, 0); 
+															}
+	| relational_expression OP_GREATER_THAN_OR_EQUAL shift_expression 	
+															{ 
+																$$ = val_append0($2, $1, $3, 0); 
+															}
 ;
 
 shift_expression: additive_expression 					
-	| shift_expression OP_SHIFT_LEFT additive_expression
-	| shift_expression OP_SHIFT_RIGHT additive_expression
+	| shift_expression OP_SHIFT_LEFT additive_expression 	{ 
+																$$ = val_append0($2, $1, $3, 0); 
+															}
+	| shift_expression OP_SHIFT_RIGHT additive_expression 	{ 
+																$$ = val_append0($2, $1, $3, 0); 
+															}
 ;
 
 method_invoke_expression: method_reference_expression T_LEFTP T_RIGHTP
@@ -197,10 +239,10 @@ statement_expression: method_invoke_expression
 	| assign_expression
 ;
 
-return_statement: T_RETURN expression
+return_statement: T_RETURN expression 	{ $$ = val_return($2); }
 ;
 
-condition_statement: T_IF binary_operator_expression statement_list BLOCK_END
+condition_statement: T_IF binary_operator_expression T_COLON statement_list BLOCK_END
 	| T_IF binary_operator_expression statement_list ELSE statement_list BLOCK_END
 ;
 
@@ -209,9 +251,9 @@ statement: expression_statement
 	| return_statement
 ;
 
-statement_list: statement
-	| statement_list statement
-	| statement_list error statement
+statement_list: statement				{	$$ = val_append(val_new_s("statement_list"), $1); }
+	| statement_list statement			{	$$ = $1; $$ = val_append($$ , $2); }
+	| statement_list error statement 	{	$$ = $1; $$ = val_append($$ , $3); }
 ;
 
 statement_list_opt:
@@ -220,7 +262,9 @@ statement_list_opt:
 ;
 
 method:
-	T_DEF T_IDENT T_LEFTP T_RIGHTP statement_list_opt BLOCK_END 
+	T_DEF T_IDENT T_LEFTP T_RIGHTP statement_list_opt BLOCK_END {
+																	$$ = val_fun($2, $5);
+																}
 ;
 
 %%

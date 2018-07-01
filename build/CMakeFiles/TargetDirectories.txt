@@ -1,0 +1,12 @@
+/Users/mario/Projects/spartan/build/CMakeFiles/rebuild_cache.dir
+/Users/mario/Projects/spartan/build/CMakeFiles/edit_cache.dir
+/Users/mario/Projects/spartan/build/tools/CMakeFiles/rebuild_cache.dir
+/Users/mario/Projects/spartan/build/tools/CMakeFiles/edit_cache.dir
+/Users/mario/Projects/spartan/build/tools/spartan/CMakeFiles/rebuild_cache.dir
+/Users/mario/Projects/spartan/build/tools/spartan/CMakeFiles/edit_cache.dir
+/Users/mario/Projects/spartan/build/tools/spartan/CMakeFiles/spartan.dir
+/Users/mario/Projects/spartan/build/lib/CMakeFiles/rebuild_cache.dir
+/Users/mario/Projects/spartan/build/lib/CMakeFiles/edit_cache.dir
+/Users/mario/Projects/spartan/build/lib/spartan/CMakeFiles/rebuild_cache.dir
+/Users/mario/Projects/spartan/build/lib/spartan/CMakeFiles/edit_cache.dir
+/Users/mario/Projects/spartan/build/lib/spartan/CMakeFiles/libspartan.dir

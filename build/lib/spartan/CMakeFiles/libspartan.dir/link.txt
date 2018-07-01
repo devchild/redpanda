@@ -1,0 +1,1 @@
+/usr/bin/clang -g -dynamiclib -Wl,-headerpad_max_install_names  -o ../libspartan.dylib -install_name @rpath/libspartan.dylib CMakeFiles/libspartan.dir/parser.c.o CMakeFiles/libspartan.dir/scanner.c.o CMakeFiles/libspartan.dir/spartan.c.o CMakeFiles/libspartan.dir/ast.c.o CMakeFiles/libspartan.dir/val.c.o 

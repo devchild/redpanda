@@ -46,16 +46,17 @@ void val_print_tree(const char *prefix, struct val_s *v) {
     putchar('\n');
   }
 }
-    int f(struct val_s *v) {
+int f(struct val_s *v) {
       val_print_pre(v);
       putchar('\n');
       val_print_tree("", v);
-      val_free(v);
+      // val_free(v);
       return 0;
-    }
+}
 
 int yyparse_callback(val_ptr val) {
-    printf("%d", val->type);
+    printf("\n");
+    f(val);
     return 0;    
 }
 
@@ -70,12 +71,9 @@ int parser_parse(FILE* in, FILE* out) {
     yyset_in(in, scanner);
     yyset_out(out, scanner);
     
-
-	result = (yyparse(scanner, yyparse_callback));
+	  result = (yyparse(scanner, yyparse_callback));
     		yylex_destroy(scanner);
     }
 
     return (result);
 }
-
-

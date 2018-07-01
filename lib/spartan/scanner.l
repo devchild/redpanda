@@ -59,10 +59,8 @@ string_literal         				{regular_string}|{verbatim_string}
 
 %%
 
-
-
 {string_literal}		{ *yylval = val_new_s(yytext); return T_STRING; }
-"##"				{ BEGIN(COMMENTS); }
+"##"				    { BEGIN(COMMENTS); }
 <COMMENTS>"##"			{ BEGIN(INITIAL); }
 <COMMENTS>[ \t\n]		; // ignore all whitespace
 <COMMENTS>. 			;
@@ -81,7 +79,7 @@ string_literal         				{regular_string}|{verbatim_string}
 "|"						{ return T_OR; }
 "?"						{ return T_QM; }
 
-[A-Za-z_][A-Za-z0-9_]*	{ return T_IDENT; }
+[A-Za-z_][A-Za-z0-9_]*	{ *yylval = val_new_ident(yytext); return T_IDENT; }
 
 "**"					{ return T_POW; }
 "//"					{ return T_SQRT; }
@@ -96,14 +94,14 @@ string_literal         				{regular_string}|{verbatim_string}
 "!="					{ return T_NEQ; }
 
 
-"+"						{ return T_PLUS; }
-"-"						{ return T_MINUS; }
-"*"						{ return T_MULTIPLY; }
-"/"						{ return T_DIVIDE; }
-"="						{ return T_EQ; }
-">"						{ return T_GT; }
-"<"						{ return T_LT; }
-"^"						{ return T_XOR; }
+"+"						{ *yylval = val_new_op(T_PLUS, "+"); return T_PLUS; }
+"-"						{ *yylval = val_new_op(T_MINUS, "-"); return T_MINUS; }
+"*"						{ *yylval = val_new_op(T_MULTIPLY, "*"); return T_MULTIPLY; }
+"/"						{ *yylval = val_new_op(T_DIVIDE, "/"); return T_DIVIDE; }
+"="						{ *yylval = val_new_op(T_EQ, "="); return T_EQ; }
+">"						{ *yylval = val_new_op(T_GT, ">"); return T_GT; }
+"<"						{ *yylval = val_new_op(T_LT, "<"); return T_LT; }
+"^"						{ *yylval = val_new_op(T_XOR, "^"); return T_XOR; }
 
 "("						{ return T_LEFTP; }
 ")"						{ return T_RIGHTP; }

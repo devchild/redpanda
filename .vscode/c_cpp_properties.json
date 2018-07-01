@@ -1,0 +1,25 @@
+{
+    "configurations": [
+        {
+            "name": "MacOS",
+            "intelliSenseMode": "clang-x64",
+            "includePath": [
+                "${workspaceFolder}/include"
+            ],
+            "macFrameworkPath": [
+                "/System/Library/Frameworks"
+            ],
+            "compileCommands": "${workspaceFolder}/build/compile_commands.json",
+            "browse": {
+                "path": [
+                    "${workspaceFolder}"
+                ],
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": ""
+            },
+            "cStandard": "c11",
+            "cppStandard": "c++17"
+        }
+    ],
+    "version": 4
+}
