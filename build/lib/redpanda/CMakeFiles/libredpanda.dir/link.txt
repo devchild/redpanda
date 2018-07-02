@@ -1,1 +1,0 @@
-/usr/bin/clang -g -dynamiclib -Wl,-headerpad_max_install_names  -o ../libspartan.dylib -install_name @rpath/libspartan.dylib CMakeFiles/libredpanda.dir/parser.c.o CMakeFiles/libredpanda.dir/scanner.c.o CMakeFiles/libredpanda.dir/redpanda.c.o CMakeFiles/libredpanda.dir/ast.c.o CMakeFiles/libredpanda.dir/val.c.o 
