@@ -3,11 +3,15 @@
 
 # HowTo
 ## Compile from source
+```bash
 git clone https://github.com/devchild/redpanda.git
 mkdir build
 cd build
 cmake ..
 make
+```
 
 ## Create a source tarball
+```bash
 make dist
+```
