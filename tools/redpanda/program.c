@@ -4,13 +4,12 @@
 #include <redpanda.h>
 
 int main(int argc, char *argv[]) {
-    
+
     if ( argc != 2 ) /* argc should be 2 for correct execution */
     {
         /* We print argv[0] assuming it is the program name */
         printf( "usage: %s filename\n", argv[0] );
         int i = 0;
-        
     }
     else
     {

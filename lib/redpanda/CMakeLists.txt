@@ -44,7 +44,7 @@ SET_SOURCE_FILES_PROPERTIES(${FlexOutput} PROPERTIES OBJECT_DEPENDS ${BisonOutpu
 SET_SOURCE_FILES_PROPERTIES(${FlexOutputHeader} PROPERTIES OBJECT_DEPENDS ${BisonOutputHeader})
 
 SET(HEADER_FILES
-  ../../include/ast.h
+  ../../include/node.h
 )
 
 set(PROJECT_FILES
@@ -53,8 +53,7 @@ set(PROJECT_FILES
 	${BisonOutput}
 	${FlexOutput}
 	redpanda.c
-	ast.c
-	val.c
+	node.c
 	)
 
 include_directories(
@@ -69,7 +68,7 @@ set_target_properties(libredpanda PROPERTIES
 	C_STANDARD 99
 	MACOSX_RPATH TRUE
 	INSTALL_NAME_DIR "@rpath"
-	OUTPUT_NAME spartan
+	OUTPUT_NAME redpanda
 	INSTALL_RPATH_USE_LINK_PATH TRUE
 	)
 

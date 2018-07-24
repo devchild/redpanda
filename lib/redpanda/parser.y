@@ -5,16 +5,14 @@
 
 %lex-param   { yyscan_t scanner }
 %parse-param { yyscan_t scanner }
-%parse-param { val_callback_t callback }
+%parse-param { node_callback_t callback }
 
 %code requires {
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include <val.h>
-
-#define YYSTYPE val_ptr
+#include <redpanda.h>
 
 #ifndef YY_TYPEDEF_YY_SCANNER_T
 #define YY_TYPEDEF_YY_SCANNER_T
@@ -35,13 +33,33 @@
 
 %code {
 #include <scanner.h>
-int yyerror(YYLTYPE * location, yyscan_t scanner, val_callback_t callback, const char *msg) {
-  return 0;
+int yyerror(YYLTYPE * location, yyscan_t scanner, node_callback_t callback, const char *msg) {
+    fprintf(stderr, "(Ln %d: Col %d - Ln %d: Col %d) %s\n", location->first_line, location->first_column, location->last_line, location->last_column, msg);
+  	return 0;
 }
 }
 
+%union {
+   int int_const;
+   float float_const;
+
+   int type_specifier;
+   char *identifier;
+
+   struct ast_node *node;
+   struct ast_declaration *declaration;
+   struct ast_expression *expression;
+   struct ast_statement_list *statement_list;
+   struct ast_selection_statement *selection_statement;
+   struct ast_while_statement *while_statement;
+   struct ast_compound_statement *compound_statement;
+   struct ast_compile_unit *compile_unit;
+}
+
 %token        				END      0 					"end-of-file"
-%token						EOL							"end-of-line"			
+%token						EOL							"end-of-line"	
+%token						T_INDENT					"indentation"	
+%token						T_DEDENT					"dedentation"			
 %token						BLOCK_END   				"keyword end"
 %token						T_DEF   					"keyword def"
 %token						T_RETURN	  				"keyword return"
@@ -79,11 +97,15 @@ int yyerror(YYLTYPE * location, yyscan_t scanner, val_callback_t callback, const
 %token						OP_OROR						"'||'"
 %token						OP_ANDAND					"'&&'"
 
+
+%type <compile_unit>     					compile_unit
+%type <statement_list>						compile_unit_member_list_opt	
+
 %start compile_unit
 
 %%
 
-compile_unit: compile_unit_member_list_opt { callback($1); }
+compile_unit: compile_unit_member_list_opt { $$ = create_compile_unit($1); callback($$); }
 ;
 
 compile_unit_member: method
@@ -134,95 +156,95 @@ primitive_expression: T_INT
 
 additive_expression: multiplicative_expression
 	| additive_expression T_PLUS multiplicative_expression 	{ 
-																$$ = val_append0($2, $1, $3, 0); 
+																// $$ = val_append0($2, $1, $3, 0); 
 															}
 	| additive_expression T_MINUS multiplicative_expression { 
-																$$ = val_append0($2, $1, $3, 0);
+																// $$ = val_append0($2, $1, $3, 0);
 															}
 ;
 
 multiplicative_expression: power_expression
 	| multiplicative_expression T_MULTIPLY power_expression { 
-																$$ = val_append0($2, $1, $3, 0); 
+																// $$ = val_append0($2, $1, $3, 0); 
 															}
 	| multiplicative_expression T_DIVIDE power_expression 	{ 
-																$$ = val_append0($2, $1, $3, 0); 
+																// $$ = val_append0($2, $1, $3, 0); 
 															}
 ;
 
 power_expression: unary_expression
 	| power_expression T_POW unary_expression				{ 
-																$$ = val_append0($2, $1, $3, 0); 
+																// $$ = val_append0($2, $1, $3, 0); 
 															}
 	| power_expression T_SQRT unary_expression 				{ 
-																$$ = val_append0($2, $1, $3, 0); 
+																// $$ = val_append0($2, $1, $3, 0); 
 															}
 ;
 
 binary_operator_expression: conditional_and_expression
 	| binary_operator_expression OP_OROR conditional_and_expression  	
 															{ 
-																$$ = val_append0($2, $1, $3, 0); 
+																// $$ = val_append0($2, $1, $3, 0); 
 															}
 ;
 
 conditional_and_expression: inclusive_or_expression	
 	| conditional_and_expression OP_ANDAND inclusive_or_expression
 															{ 
-																$$ = val_append0($2, $1, $3, 0); 
+																// $$ = val_append0($2, $1, $3, 0); 
 															}
 ;
 
 inclusive_or_expression: exclusive_or_expression
 	| inclusive_or_expression T_OR exclusive_or_expression 	{ 
-																$$ = val_append0($2, $1, $3, 0); 
+																// $$ = val_append0($2, $1, $3, 0); 
 															}
 ;
 
 exclusive_or_expression: and_expression
 	| exclusive_or_expression T_XOR and_expression 			{ 
-																$$ = val_append0($2, $1, $3, 0); 
+																// $$ = val_append0($2, $1, $3, 0); 
 															}
 ;
 
 and_expression: equality_expression						
 	| and_expression T_AND equality_expression				{ 
-																$$ = val_append0($2, $1, $3, 0); 
+																// $$ = val_append0($2, $1, $3, 0); 
 															}
 ;
 
 equality_expression: relational_expression
 	| equality_expression T_EQ relational_expression		{ 
-																$$ = val_append0($2, $1, $3, 0); 
+																// $$ = val_append0($2, $1, $3, 0); 
 															}
 	| equality_expression T_NEQ relational_expression  		{ 
-																$$ = val_append0($2, $1, $3, 0); 
+																// $$ = val_append0($2, $1, $3, 0); 
 															}
 ;
 
 relational_expression: shift_expression						
 	| relational_expression T_LT shift_expression 			{ 
-																$$ = val_append0($2, $1, $3, 0); 
+																// $$ = val_append0($2, $1, $3, 0); 
 															}
 	| relational_expression T_GT shift_expression 			{ 
-																$$ = val_append0($2, $1, $3, 0); 
+																// $$ = val_append0($2, $1, $3, 0); 
 															}
 	| relational_expression OP_LESS_THAN_OR_EQUAL shift_expression 	
 															{ 
-																$$ = val_append0($2, $1, $3, 0); 
+																// $$ = val_append0($2, $1, $3, 0); 
 															}
 	| relational_expression OP_GREATER_THAN_OR_EQUAL shift_expression 	
 															{ 
-																$$ = val_append0($2, $1, $3, 0); 
+																// $$ = val_append0($2, $1, $3, 0); 
 															}
 ;
 
 shift_expression: additive_expression 					
 	| shift_expression OP_SHIFT_LEFT additive_expression 	{ 
-																$$ = val_append0($2, $1, $3, 0); 
+																// $$ = val_append0($2, $1, $3, 0); 
 															}
 	| shift_expression OP_SHIFT_RIGHT additive_expression 	{ 
-																$$ = val_append0($2, $1, $3, 0); 
+																// $$ = val_append0($2, $1, $3, 0); 
 															}
 ;
 
@@ -239,7 +261,7 @@ statement_expression: method_invoke_expression
 	| assign_expression
 ;
 
-return_statement: T_RETURN expression 	{ $$ = val_return($2); }
+return_statement: T_RETURN expression 	{ /* $$ = val_return($2); */ }
 ;
 
 condition_statement: T_IF binary_operator_expression T_COLON statement_list BLOCK_END
@@ -251,9 +273,9 @@ statement: expression_statement
 	| return_statement
 ;
 
-statement_list: statement				{	$$ = val_append(val_new_s("statement_list"), $1); }
-	| statement_list statement			{	$$ = $1; $$ = val_append($$ , $2); }
-	| statement_list error statement 	{	$$ = $1; $$ = val_append($$ , $3); }
+statement_list: statement				{	 }
+	| statement_list statement			{	 }
+	| statement_list error statement 	{	 }
 ;
 
 statement_list_opt:
@@ -262,9 +284,9 @@ statement_list_opt:
 ;
 
 method:
-	T_DEF T_IDENT T_LEFTP T_RIGHTP statement_list_opt BLOCK_END {
-																	$$ = val_fun($2, $5);
-																}
+	T_DEF T_IDENT T_LEFTP T_RIGHTP T_COLON T_INDENT statement_list T_DEDENT {
+	// $$ = val_fun($2, $5);
+	}
 ;
 
 %%

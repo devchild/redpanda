@@ -10,7 +10,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/build/bin/redpanda",    
-            "args": ["${workspaceFolder}/examples/test.panda"],
+            "args": ["${workspaceFolder}/examples/operators.panda"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
