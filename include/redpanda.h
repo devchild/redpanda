@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <node.h>
+
 #ifndef redpanda_exports_h__
 #define redpanda_exports_h__
 

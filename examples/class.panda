@@ -1,0 +1,18 @@
+class MyClass
+    x: int
+    y: int
+
+    def X.get(): int
+        return self.x
+    
+    def X.set(value: int):
+        self.x = value
+
+    def move(x: int, y: int):
+        self.x = x
+        self.y = y
+
+def move(this: MyClass, x: int, y: int):
+    this.x += x 
+    this.y += y
+    return this
