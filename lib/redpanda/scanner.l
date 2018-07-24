@@ -39,30 +39,44 @@ string_literal         				{regular_string}|{verbatim_string}
 #endif
 
 // support locationtracking
+/* Initialize LOC. */
+# define LOCATION_RESET(Loc)                                \
+    (Loc).first_column = (Loc).first_line = 1;              \
+    (Loc).last_column =  (Loc).last_line = 1;
 
-#define YY_USER_ACTION \
-    yylloc->first_line = yylloc->last_line = yylineno; \
-    yylloc->first_column = yycolumn; \
-    yylloc->last_column = yycolumn + yyleng; \
-    yycolumn += yyleng;
+# define LOCATION_COLUMNS(Loc, Num)                         \
+    (Loc).last_column += Num;
 
-#define OP(PREC) *yylval = val_new_s(yytext); return PREC
+/* Advance of NUM lines. */
+# define LOCATION_LINES(Loc, Num)                           \
+    (Loc).last_column = 1;                                  \
+    (Loc).last_line += Num;
+
+/* Restart: move the first cursor to the last position. */
+# define LOCATION_STEP(Loc)                                 \
+    (Loc).first_column = (Loc).last_column;                 \
+    (Loc).first_line = (Loc).last_line;
+
+#define YY_USER_ACTION                                      \
+    yylloc->last_column += yyleng;
 
 int current_line_indent = 0;
 struct node* head = NULL;
-
 %}
 
 %x INDENTSTATE COMMENTS
 %option stack debug
-
 %%
-
+%{
+  /* At each yylex invocation, mark the current position as the
+     start of the next token.  */
+  LOCATION_STEP (*yylloc);
+%}
 {string_literal}		{ /* *yylval = val_new_s(yytext); return T_STRING; */ }
 "##"				    { BEGIN(COMMENTS); }
 <COMMENTS>"##"			{ BEGIN(INITIAL); }
-<COMMENTS>[ \t]		    ;   // ignore all whitespace
-<COMMENTS>[\n]		    {   yycolumn = 0; }
+<COMMENTS>[\t ]+	    { LOCATION_STEP (*yylloc); }   // ignore all whitespace
+<COMMENTS>\n+		    { LOCATION_LINES (*yylloc, yyleng); LOCATION_STEP (*yylloc); }
 <COMMENTS>. 			;
 
 "#"[^\n]*				{ /* consume //-comment */ }
@@ -74,11 +88,12 @@ struct node* head = NULL;
 "else"					{ return ELSE; }
 "def"					{ return T_DEF; }
 "if"					{ return T_IF; }
+
+[A-Za-z_][A-Za-z0-9_]*	{ yylval->identifier = strdup(yytext); return T_IDENT; }
+
 "&"						{ return T_AND; }
 "|"						{ return T_OR; }
 "?"						{ return T_QM; }
-
-[A-Za-z_][A-Za-z0-9_]*	{ yylval->identifier = strdup(yytext); return T_IDENT; }
 
 "**"					{ return T_POW; }
 "//"					{ return T_SQRT; }
@@ -92,26 +107,28 @@ struct node* head = NULL;
 "<<"					{ return OP_SHIFT_LEFT; }
 "!="					{ return T_NEQ; }
 
-
-"+"						{ /* *yylval = val_new_op(T_PLUS, "+"); return T_PLUS;         */ return T_PLUS; }
-"-"						{ /* *yylval = val_new_op(T_MINUS, "-"); return T_MINUS;       */ return T_MINUS; }
-"*"						{ /* *yylval = val_new_op(T_MULTIPLY, "*"); return T_MULTIPLY; */ return T_MULTIPLY; }
-"/"						{ /* *yylval = val_new_op(T_DIVIDE, "/"); return T_DIVIDE;     */ return T_DIVIDE; }
-"="						{ /* *yylval = val_new_op(T_EQ, "="); return T_EQ;             */ return T_EQ; }
-">"						{ /* *yylval = val_new_op(T_GT, ">"); return T_GT;             */ }
-"<"						{ /* *yylval = val_new_op(T_LT, "<"); return T_LT;             */ }
-"^"						{ /* *yylval = val_new_op(T_XOR, "^"); return T_XOR;           */ }
+"+"						{ return T_PLUS; }
+"-"						{ return T_MINUS; }
+"*"						{ return T_MULTIPLY; }
+"/"						{ return T_DIVIDE; }
+"="						{ return T_EQ; }
+">"						{ return T_GT; }
+"<"						{ return T_LT; }
+"^"						{ return T_XOR; }
 
 "("						{ return T_LEFTP; }
 ")"						{ return T_RIGHTP; }
 ":"						{ return T_COLON; }
+";"						{ return T_SCOLON; }
 "!"						{ return T_NOT; }
 
 <INITIAL>[ \t\r]+ 					{
+                                        LOCATION_STEP (*yylloc);
 										/* gobble up white-spaces */
 									}
-<INITIAL>\n                			{
+<INITIAL>\n               			{
 										yyless(0);
+                                        LOCATION_COLUMNS(*yylloc, -1)
                                         BEGIN(INDENTSTATE);
                                        	// return (token::EOL);
                                     }
@@ -136,7 +153,8 @@ struct node* head = NULL;
 										current_line_indent += yyleng;
 									}
 <INDENTSTATE>\n 					{
-                                        yycolumn = 0;
+                                        LOCATION_LINES (*yylloc, yyleng); 
+                                        LOCATION_STEP (*yylloc);
 										current_line_indent = 0;
 									}
 <INDENTSTATE><<EOF>>       			{
@@ -154,6 +172,7 @@ struct node* head = NULL;
                                     }
 <INDENTSTATE>.                      {
 										yyless(0);
+                                        LOCATION_COLUMNS(*yylloc, -1)
                                         int current_indent = current_line_indent;
                                         int previous_indent = 0;
                                         if (!empty(head))
@@ -169,7 +188,6 @@ struct node* head = NULL;
                                         	head = pop(head, &element);
 	                                        return (T_DEDENT);
                                         }
-
                                         BEGIN(INITIAL);
                                     }
 %%

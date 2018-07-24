@@ -4,5 +4,6 @@
         "bitset": "cpp",
         "chrono": "cpp",
         "redpanda.h": "c"
-    }
+    },
+    "cmake.configureOnOpen": true
 }

@@ -81,6 +81,7 @@ int yyerror(YYLTYPE * location, yyscan_t scanner, node_callback_t callback, cons
 %token						T_EQ	  					"'='"
 %token						T_NOT	  					"'!'"
 %token						T_COLON	  					"':'"
+%token						T_SCOLON	  				"';'"
 %token						T_LEFTP	  					"'('"
 %token						T_RIGHTP	  				"')'"
 %token						T_POW	  					"'**'"
