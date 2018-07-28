@@ -1,4 +1,7 @@
 def test():
 	return 2 + 2
 
+def plop():
+	## do nothing
+
 test()

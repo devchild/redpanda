@@ -16,8 +16,8 @@ alloc_node(int tag)
       case AST_DECLARATION:
          size = sizeof(struct ast_declaration);
          break;
-      case AST_EXPRESSION:
-         size = sizeof(struct ast_expression);
+      case AST_BINARY_EXPRESSION:
+         size = sizeof(struct ast_binary_expression);
          break;
       case AST_STATEMENT_LIST:
          size = sizeof(struct ast_statement_list);
@@ -34,6 +34,15 @@ alloc_node(int tag)
       case AST_COMPILE_UNIT:
          size = sizeof(struct ast_compile_unit);
          break;
+      case AST_COMPILE_UNIT_MEMBER_LIST:
+         size = sizeof(struct ast_compile_unit_member_list);
+         break;
+      case AST_METHOD:
+         size = sizeof(struct ast_method);
+         break;
+      case AST_PRIMITIVE_EXPRESSION:
+         size = sizeof(struct ast_primitive_expression);
+         break;
       default:
          fprintf(stderr, "Unknown node type: %d\n", tag);
          exit(EXIT_FAILURE);
@@ -49,13 +58,76 @@ alloc_node(int tag)
    return node;
 }
 
-struct ast_expression *
-create_expression(int operator, struct ast_expression *lhs,
-                                 struct ast_expression *rhs)
-{
-   struct ast_expression *expression;
+void
+print_node_list(ast_node_list *nodes){
+   int tag = nodes->tag;
+   switch (tag) {
+      case AST_STATEMENT_LIST:
+      fprintf(stdout, "AST_STATEMENT_LIST\n");
+      for (int i= 0; i < (nodes)->count; i++)
+            print_node((nodes)->nodes[i]);
+         break;
+      case AST_COMPILE_UNIT_MEMBER_LIST:
+      fprintf(stdout, "AST_COMPILE_UNIT_MEMBER_LIST\n");
+      for (int i= 0; i < (nodes)->count; i++)
+            print_node((nodes)->nodes[i]);
+         break;
+   } 
+}
+void
+print_node(ast_node *node){
+      if (!node)
+            return;
 
-   expression = alloc_node(AST_EXPRESSION);
+   int tag = node->tag;
+   switch (tag) {
+      case AST_NODE:
+      fprintf(stdout, "AST_NODE\n");
+         break;
+      case AST_DECLARATION:
+      fprintf(stdout, "AST_DECLARATION\n");
+         break;
+      case AST_BINARY_EXPRESSION:
+      fprintf(stdout, "AST_BINARY_EXPRESSION\n");
+      print_node((ast_node*)((ast_binary_expression*)node)->subexpr[0]);
+      fprintf(stdout, " + \n");
+      print_node((ast_node*)((ast_binary_expression*)node)->subexpr[1]);
+         break;
+      case AST_COMPOUND_STATEMENT:
+      fprintf(stdout, "AST_COMPOUND_STATEMENT\n");
+         break;
+      case AST_SELECTION_STATEMENT:
+      fprintf(stdout, "AST_SELECTION_STATEMENT\n");
+         break;
+      case AST_WHILE_STATEMENT:
+      fprintf(stdout, "AST_WHILE_STATEMENT\n");
+         break;
+      case AST_COMPILE_UNIT:
+      fprintf(stdout, "AST_COMPILE_UNIT\n");
+      print_node_list((ast_node_list*)((ast_compile_unit*)node)->compile_unit_member_list);
+         break;
+      case AST_COMPILE_UNIT_MEMBER_LIST:
+      fprintf(stdout, "AST_COMPILE_UNIT_MEMBER_LIST\n");
+      for (int i= 0; i < ((ast_node_list*)node)->count; i++)
+            print_node(((ast_node_list*)node)->nodes[i]);
+         break;
+      case AST_METHOD:
+         fprintf(stdout, "AST_METHOD:%s\n", ((ast_method*)node)->identifier);
+         print_node_list((ast_node_list*)((ast_method*)node)->statement_list);
+         break;
+      case AST_PRIMITIVE_EXPRESSION:
+         fprintf(stdout, "AST_PRIMITIVE_EXPRESSION\n");
+         break;
+   }
+}
+
+ast_binary_expression *
+create_binary_expression(const char* operator, ast_node *lhs,
+                                ast_node *rhs)
+{
+   struct ast_binary_expression *expression;
+
+   expression = alloc_node(AST_BINARY_EXPRESSION);
    expression->operator = operator;
    expression->subexpr[0] = lhs;
    expression->subexpr[1] = rhs;
@@ -63,7 +135,7 @@ create_expression(int operator, struct ast_expression *lhs,
    return expression;
 }
 
-struct ast_declaration *
+ast_declaration *
 create_declaration(int type_specifier, const char *identifier)
 {
    struct ast_declaration *declaration;
@@ -75,51 +147,10 @@ create_declaration(int type_specifier, const char *identifier)
    return declaration;
 }
 
-struct ast_statement_list *
-create_statement_list(struct ast_node *statement)
+ast_compound_statement *
+create_compound_statement(ast_statement_list *statement_list)
 {
-   struct ast_statement_list *statement_list;
-
-   statement_list = alloc_node(AST_STATEMENT_LIST);
-
-   statement_list->statement = calloc(1, sizeof(struct ast_node *));
-   if (statement_list->statement == NULL) {
-      fprintf(stderr, "Memory allocation request failed.\n");
-      exit(EXIT_FAILURE);
-   }
-
-   statement_list->statement[0] = statement;
-   statement_list->number_of_statements = 1;
-
-   return statement_list;
-}
-
-struct ast_statement_list *
-statement_list_add_statement(struct ast_statement_list *statement_list,
-                             struct ast_node *statement)
-{
-   int nstmts;
-   size_t size;
-
-   nstmts = statement_list->number_of_statements + 1;
-   size = nstmts * sizeof(struct ast_statement *);
-
-   statement_list->statement = realloc(statement_list->statement, size);
-   if (statement_list->statement == NULL) {
-      fprintf(stderr, "Memory reallocation request failed.\n");
-      exit(EXIT_FAILURE);
-   }
-
-   statement_list->statement[nstmts - 1] = statement;
-   statement_list->number_of_statements++;
-
-   return statement_list;
-}
-
-struct ast_compound_statement *
-create_compound_statement(struct ast_statement_list *statement_list)
-{
-   struct ast_compound_statement *compound_statement;
+   ast_compound_statement *compound_statement;
 
    compound_statement = alloc_node(AST_COMPOUND_STATEMENT);
    compound_statement->statement_list = statement_list;
@@ -127,12 +158,22 @@ create_compound_statement(struct ast_statement_list *statement_list)
    return compound_statement;
 }
 
-struct ast_selection_statement *
-create_selection_statement(struct ast_expression *condition,
-                           struct ast_compound_statement *then_body,
-                           struct ast_compound_statement *else_body)
+ast_method *
+create_method(const char* identifier, ast_statement_list *statement_list) { 
+   ast_method *ret;
+
+   ret = alloc_node(AST_METHOD);
+   ret->statement_list = statement_list;
+   ret->identifier = identifier;
+   return ret;
+}
+
+ast_selection_statement *
+create_selection_statement(ast_binary_expression *condition,
+                           ast_compound_statement *then_body,
+                           ast_compound_statement *else_body)
 {
-   struct ast_selection_statement *selection_statement;
+   ast_selection_statement *selection_statement;
 
    selection_statement = alloc_node(AST_SELECTION_STATEMENT);
 
@@ -143,11 +184,11 @@ create_selection_statement(struct ast_expression *condition,
    return selection_statement;
 }
 
-struct ast_while_statement *
-create_while_statement(struct ast_expression *condition,
-                       struct ast_compound_statement *body)
+ast_while_statement *
+create_while_statement(ast_binary_expression *condition,
+                       ast_compound_statement *body)
 {
-   struct ast_while_statement *while_statement;
+   ast_while_statement *while_statement;
 
    while_statement = alloc_node(AST_WHILE_STATEMENT);
 
@@ -157,13 +198,60 @@ create_while_statement(struct ast_expression *condition,
    return while_statement;
 }
 
-struct ast_compile_unit *
-create_compile_unit(struct ast_statement_list *statement_list)
+ast_compile_unit *
+create_compile_unit(ast_compile_unit_member_list *compile_unit_member_list)
 {
    struct ast_compile_unit *compile_unit;
 
    compile_unit = alloc_node(AST_COMPILE_UNIT);
-   compile_unit->statement_list = statement_list;
+   compile_unit->compile_unit_member_list = compile_unit_member_list;
 
    return compile_unit;
+}
+
+ast_statement_list *
+create_statement_list()
+{
+   struct ast_statement_list *statement_list;
+   statement_list = alloc_node(AST_STATEMENT_LIST);
+   return statement_list;
+}
+
+ast_compile_unit_member_list *
+create_compile_unit_member_list()
+{
+   ast_compile_unit_member_list *ret;
+   ret = alloc_node(AST_COMPILE_UNIT_MEMBER_LIST);
+   return ret;
+}
+
+ast_node_list *
+node_list_add(ast_node_list *node_list,
+              ast_node *node)
+{
+   int nstmts;
+   size_t size;
+
+   nstmts = node_list->count + 1;
+   size = nstmts * sizeof(struct ast_node *);
+
+   node_list->nodes = realloc(node_list->nodes, size);
+   if (node_list->nodes == NULL) {
+      fprintf(stderr, "Memory reallocation request failed.\n");
+      exit(EXIT_FAILURE);
+   }
+
+   node_list->nodes[nstmts - 1] = node;
+   node_list->count++;
+
+   return node_list;
+}
+
+ast_primitive_expression *
+create_const_int_expression(int value){
+   ast_primitive_expression *ret;
+   ret = alloc_node(AST_PRIMITIVE_EXPRESSION);
+   ret->type = ASTPT_INT_CONSTANT;
+   ret->int_constant = value;
+   return ret;
 }

@@ -5,6 +5,7 @@
 
 int yyparse_callback(struct ast_compile_unit *val) {
     printf("callback called\n");
+    print_node((ast_node*)val);
     return 0;    
 }
 

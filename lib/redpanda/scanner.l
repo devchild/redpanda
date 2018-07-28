@@ -73,13 +73,8 @@ struct node* head = NULL;
   LOCATION_STEP (*yylloc);
 %}
 {string_literal}		{ /* *yylval = val_new_s(yytext); return T_STRING; */ }
-"##"				    { BEGIN(COMMENTS); }
-<COMMENTS>"##"			{ BEGIN(INITIAL); }
-<COMMENTS>[\t ]+	    { LOCATION_STEP (*yylloc); }   // ignore all whitespace
-<COMMENTS>\n+		    { LOCATION_LINES (*yylloc, yyleng); LOCATION_STEP (*yylloc); }
-<COMMENTS>. 			;
 
-"#"[^\n]*				{ /* consume //-comment */ }
+"##"[^\n]*				{ LOCATION_STEP (*yylloc); }
 
 [0-9]*\.[0-9]+ 			{ /* *yylval = val_new_int(yytext); return T_FLOAT; */ return T_FLOAT; }
 [0-9]+					{ /* *yylval = val_new_int(yytext); return T_INT; */ return T_INT; }
