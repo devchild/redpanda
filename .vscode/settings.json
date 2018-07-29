@@ -1,9 +1,6 @@
 {
+    "cmake.configureOnOpen": true,
     "files.associations": {
-        "__bit_reference": "cpp",
-        "bitset": "cpp",
-        "chrono": "cpp",
-        "redpanda.h": "c"
-    },
-    "cmake.configureOnOpen": true
+        "bitset": "c"
+    }
 }

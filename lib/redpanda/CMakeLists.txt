@@ -45,23 +45,27 @@ SET_SOURCE_FILES_PROPERTIES(${FlexOutputHeader} PROPERTIES OBJECT_DEPENDS ${Biso
 
 SET(HEADER_FILES
   ../../include/node.h
+  ../../include/redpanda.h
+  ../../include/stack.h
 )
+
+find_package(GLib)
+find_package(GObject)
 
 set(PROJECT_FILES
 	${HEADER_FILES}
-	${PROJECT_FILES}
 	${BisonOutput}
 	${FlexOutput}
 	redpanda.c
-	node.c
-	)
-
-include_directories(
-	../../include
-	${CMAKE_CURRENT_BINARY_DIR}
+  node.c
+  ast_node.c
+  ast_binary_expression.c
 	)
 
 add_library(libredpanda SHARED ${PROJECT_FILES})
+INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR} ../../include ${GLib_INCLUDE_DIRS} ${GObject_INCLUDE_DIRS})
+target_link_libraries(libredpanda ${GLib_LIBRARY} ${GObject_LIBRARY})
+
 
 set_target_properties(libredpanda PROPERTIES
 	LINKER_LANGUAGE C

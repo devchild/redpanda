@@ -4,20 +4,37 @@
             "name": "MacOS",
             "intelliSenseMode": "clang-x64",
             "includePath": [
-                "${workspaceFolder}/include"
+                    "/Library/Developer/CommandLineTools/usr/include/c++/v1/",
+                    "/usr/local/include",
+                    "/usr/include",
+                    "/usr/local/Cellar/glib/2.56.1/include/glib-2.0",
+                    "/usr/local/Cellar/glib/2.56.1/lib/glib-2.0/include",
+                    "/usr/local/opt/gettext/include",
+                    "/usr/local/Cellar/pcre/8.42/include",
+                    "${workspaceFolder}/include",
+                    "${workspaceFolder}"
             ],
             "macFrameworkPath": [
-                "/System/Library/Frameworks"
+                "/System/Library/Frameworks",
+                "/Library/Frameworks"
             ],
             "compileCommands": "${workspaceFolder}/build/compile_commands.json",
             "browse": {
                 "path": [
+                    "/Library/Developer/CommandLineTools/usr/include/c++/v1/",
+                    "/usr/local/include",
+                    "/usr/include",
+                    "/usr/local/Cellar/glib/2.56.1/include/glib-2.0",
+                    "/usr/local/Cellar/glib/2.56.1/lib/glib-2.0/include",
+                    "/usr/local/opt/gettext/include",
+                    "/usr/local/Cellar/pcre/8.42/include",
+                    "${workspaceFolder}/include",
                     "${workspaceFolder}"
                 ],
                 "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": ""
             },
-            "cStandard": "c11",
+            "cStandard":"c99",
             "cppStandard": "c++17",
             "configurationProvider": "vector-of-bool.cmake-tools"
         }

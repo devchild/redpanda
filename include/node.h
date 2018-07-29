@@ -10,9 +10,9 @@ struct ast_selection_statement;
 struct ast_while_statement;
 struct ast_compile_unit;
 
-#define AST_NODE                        1
+#define AST_NODE_                        1
 #define AST_DECLARATION                 2
-#define AST_BINARY_EXPRESSION           3
+#define AST_BINARY_EXPRESSION_           3
 #define AST_STATEMENT_LIST              4
 #define AST_COMPOUND_STATEMENT          5
 #define AST_SELECTION_STATEMENT         6
@@ -55,7 +55,7 @@ typedef struct ast_method {
 typedef struct ast_binary_expression {
    ast_node base;
 
-   const char* operator;
+   const char* _operator;
    struct ast_node *subexpr[2];
 } ast_binary_expression;
 
@@ -109,7 +109,7 @@ ast_declaration *
 create_declaration(int type_specifier, const char *identifier);
 
 ast_binary_expression *
-create_binary_expression(const char* operator, ast_node *lhs,
+create_binary_expression(const char* _operator, ast_node *lhs,
                                  ast_node *rhs);
 
 ast_statement_list *

@@ -10,13 +10,13 @@ alloc_node(int tag)
    size_t size = 0;
 
    switch (tag) {
-      case AST_NODE:
+      case AST_NODE_:
          size = sizeof(struct ast_node);
          break;
       case AST_DECLARATION:
          size = sizeof(struct ast_declaration);
          break;
-      case AST_BINARY_EXPRESSION:
+      case AST_BINARY_EXPRESSION_:
          size = sizeof(struct ast_binary_expression);
          break;
       case AST_STATEMENT_LIST:
@@ -81,13 +81,13 @@ print_node(ast_node *node){
 
    int tag = node->tag;
    switch (tag) {
-      case AST_NODE:
+      case AST_NODE_:
       fprintf(stdout, "AST_NODE\n");
          break;
       case AST_DECLARATION:
       fprintf(stdout, "AST_DECLARATION\n");
          break;
-      case AST_BINARY_EXPRESSION:
+      case AST_BINARY_EXPRESSION_:
       fprintf(stdout, "AST_BINARY_EXPRESSION\n");
       print_node((ast_node*)((ast_binary_expression*)node)->subexpr[0]);
       fprintf(stdout, " + \n");
@@ -122,13 +122,13 @@ print_node(ast_node *node){
 }
 
 ast_binary_expression *
-create_binary_expression(const char* operator, ast_node *lhs,
+create_binary_expression(const char* _operator, ast_node *lhs,
                                 ast_node *rhs)
 {
    struct ast_binary_expression *expression;
 
-   expression = alloc_node(AST_BINARY_EXPRESSION);
-   expression->operator = operator;
+   expression = alloc_node(AST_BINARY_EXPRESSION_);
+   expression->_operator = _operator;
    expression->subexpr[0] = lhs;
    expression->subexpr[1] = rhs;
 
@@ -225,7 +225,7 @@ create_compile_unit_member_list()
    return ret;
 }
 
-ast_node_list *
+ast_node_list * 
 node_list_add(ast_node_list *node_list,
               ast_node *node)
 {
