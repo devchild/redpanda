@@ -2,34 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <redpanda.h>
-#include <ast_node.h>
-#include <ast_binary_expression.h>
 
-int main(int argc, char *argv[]) {
-    
-    AstNode* node = g_object_new(AST_TYPE_NODE, NULL);
-    AstBinaryExpression* bin_exp = g_object_new(AST_TYPE_BINARY_EXPRESSION, NULL);
-
-    GValue strval = G_VALUE_INIT;
-    g_value_init (&strval, G_TYPE_STRING);
-    g_value_set_string (&strval, "dit is een test");
-    g_object_set_property (G_OBJECT (node), "Text", &strval);
-    g_value_unset (&strval);
-
-    g_value_init (&strval, G_TYPE_STRING);
-    g_object_get_property (G_OBJECT (node), "Text", &strval);
-    g_print ("text: %s\n", g_value_dup_string(&strval));
-
-    GValue strval2 = G_VALUE_INIT;
-    g_value_init (&strval2, G_TYPE_STRING);
-    g_value_set_string (&strval2, "dit is een tweede test");
-    g_object_set_property (G_OBJECT (bin_exp), "Text", &strval2);
-    g_value_unset (&strval2);
-
-    g_value_init (&strval2, G_TYPE_STRING);
-    g_object_get_property (G_OBJECT (bin_exp), "Text", &strval2);
-    g_print ("text: %s\n", g_value_dup_string(&strval2));
-
+int main(int argc, char *argv[]) {  
     if ( argc != 2 ) /* argc should be 2 for correct execution */
     {
         /* We print argv[0] assuming it is the program name */

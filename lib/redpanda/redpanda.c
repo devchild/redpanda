@@ -10,17 +10,17 @@ int yyparse_callback(struct ast_compile_unit *val) {
 }
 
 int parser_parse(FILE* in, FILE* out) {
-	int result = 0;
+    int result = 0;
     yyscan_t scanner;
     if (yylex_init(&scanner)) {
-	    result = 1;
+        result = 1;
     }
     else {
-      yyset_in(in, scanner);
-      yyset_out(out, scanner);
+        yyset_in(in, scanner);
+        yyset_out(out, scanner);
     
-	    result = yyparse(scanner, yyparse_callback);
-    	yylex_destroy(scanner);
+        result = yyparse(scanner, yyparse_callback);
+        yylex_destroy(scanner);
     }
 
     return (result);

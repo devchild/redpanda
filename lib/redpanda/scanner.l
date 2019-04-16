@@ -32,8 +32,7 @@ string_literal         				{regular_string}|{verbatim_string}
 #   include <io.h>
 #   ifdef _MSC_VER
 #     define isatty _isatty
-#     define fileno _fileno
-// '_isatty' : inconsistent dll linkage.  dllexport assumed.
+#     define fileno _fileno // '_isatty' : inconsistent dll linkage.  dllexport assumed.
 #     pragma warning( disable : 4273 )
 #   endif
 #endif
@@ -60,18 +59,19 @@ string_literal         				{regular_string}|{verbatim_string}
 #define YY_USER_ACTION                                      \
     yylloc->last_column += yyleng;
 
-int current_line_indent = 0;
-struct node* head = NULL;
+    int current_line_indent = 0;
+    struct node* head = NULL;
 %}
 
 %x INDENTSTATE COMMENTS
 %option stack debug
 %%
 %{
-  /* At each yylex invocation, mark the current position as the
-     start of the next token.  */
-  LOCATION_STEP (*yylloc);
+    /* At each yylex invocation, mark the current position as the
+        start of the next token.  */
+    LOCATION_STEP (*yylloc);
 %}
+
 {string_literal}		{ /* *yylval = val_new_s(yytext); return T_STRING; */ }
 
 "##"[^\n]*				{ LOCATION_STEP (*yylloc); }
@@ -118,71 +118,78 @@ struct node* head = NULL;
 "!"						{ return T_NOT; }
 
 <INITIAL>[ \t\r]+ 					{
-                                        LOCATION_STEP (*yylloc);
-										/* gobble up white-spaces */
-									}
+    LOCATION_STEP (*yylloc);
+    /* gobble up white-spaces */
+}
+
 <INITIAL>\n               			{
-										yyless(0);
-                                        LOCATION_COLUMNS(*yylloc, -1)
-                                        BEGIN(INDENTSTATE);
-                                       	// return (token::EOL);
-                                    }
+    yyless(0);
+    LOCATION_COLUMNS(*yylloc, -1)
+        BEGIN(INDENTSTATE);
+    // return (token::EOL);
+}
+
 <INITIAL><<EOF>>           			{
-										if (!empty(head))
-                                        {
-                                            int element;
-                                        	head = pop(head, &element);
-                                            unput(0);
-                                            return(T_DEDENT);
-                                        }
-                                        else
-                                        {
-                                        	yyterminate();
-                                        }
-                                    }
+    if (!empty(head))
+    {
+        int element;
+        head = pop(head, &element);
+        unput(0);
+        return(T_DEDENT);
+    }
+    else
+    {
+        yyterminate();
+    }
+}
+
 <INITIAL>. 							{
-										/* pass all other characters up to bison */
-									    return yytext[0];
-									}
+    /* pass all other characters up to bison */
+    return yytext[0];
+}
+
 <INDENTSTATE>[ ]+ 					{
-										current_line_indent += yyleng;
-									}
+    current_line_indent += yyleng;
+}
+
 <INDENTSTATE>\n 					{
-                                        LOCATION_LINES (*yylloc, yyleng); 
-                                        LOCATION_STEP (*yylloc);
-										current_line_indent = 0;
-									}
+    LOCATION_LINES (*yylloc, yyleng); 
+    LOCATION_STEP (*yylloc);
+    current_line_indent = 0;
+}
+
 <INDENTSTATE><<EOF>>       			{
-										if (!empty(head))
-                                        {
-                                            int element;
-                                            head = pop(head, &element);
-                                            unput(0);
-                                            return(T_DEDENT);
-                                        }
-                                        else
-                                        {
-                                        	yyterminate();
-                                        }
-                                    }
+    if (!empty(head))
+    {
+        int element;
+        head = pop(head, &element);
+        unput(0);
+        return(T_DEDENT);
+    }
+    else
+    {
+        yyterminate();
+    }
+}
+
 <INDENTSTATE>.                      {
-										yyless(0);
-                                        LOCATION_COLUMNS(*yylloc, -1)
-                                        int current_indent = current_line_indent;
-                                        int previous_indent = 0;
-                                        if (!empty(head))
-                                            previous_indent = head->data;
+    yyless(0);
+    LOCATION_COLUMNS(*yylloc, -1)
+        int current_indent = current_line_indent;
+    int previous_indent = 0;
+    if (!empty(head))
+        previous_indent = head->data;
 
-                                        if (current_indent > previous_indent) {
-                                            head = push(head, current_indent);
-	                                        return (T_INDENT);
-                                        }
+    if (current_indent > previous_indent) {
+        head = push(head, current_indent);
+        return (T_INDENT);
+    }
 
-                                        if (current_indent < previous_indent) {
-                                            int element;
-                                        	head = pop(head, &element);
-	                                        return (T_DEDENT);
-                                        }
-                                        BEGIN(INITIAL);
-                                    }
+    if (current_indent < previous_indent) {
+        int element;
+        head = pop(head, &element);
+        return (T_DEDENT);
+    }
+    BEGIN(INITIAL);
+}
 %%

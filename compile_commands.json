@@ -1,0 +1,27 @@
+[
+{
+  "directory": "/Users/mario/Projects/redpanda/build/tools/redpanda",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/cc  -I/Users/mario/Projects/redpanda/tools/redpanda/../../include   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk   -o CMakeFiles/redpanda.dir/program.c.o   -c /Users/mario/Projects/redpanda/tools/redpanda/program.c",
+  "file": "/Users/mario/Projects/redpanda/tools/redpanda/program.c"
+},
+{
+  "directory": "/Users/mario/Projects/redpanda/build/lib/redpanda",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/cc -Dlibredpanda_EXPORTS -I/Users/mario/Projects/redpanda/build/lib/redpanda -I/Users/mario/Projects/redpanda/lib/redpanda/../../include -I/usr/local/Cellar/glib/2.60.0_1/include/glib-2.0 -I/usr/local/Cellar/glib/2.60.0_1/lib/glib-2.0/include   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fPIC   -std=gnu99 -o CMakeFiles/libredpanda.dir/parser.c.o   -c /Users/mario/Projects/redpanda/build/lib/redpanda/parser.c",
+  "file": "/Users/mario/Projects/redpanda/build/lib/redpanda/parser.c"
+},
+{
+  "directory": "/Users/mario/Projects/redpanda/build/lib/redpanda",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/cc -Dlibredpanda_EXPORTS -I/Users/mario/Projects/redpanda/build/lib/redpanda -I/Users/mario/Projects/redpanda/lib/redpanda/../../include -I/usr/local/Cellar/glib/2.60.0_1/include/glib-2.0 -I/usr/local/Cellar/glib/2.60.0_1/lib/glib-2.0/include   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fPIC   -std=gnu99 -o CMakeFiles/libredpanda.dir/scanner.c.o   -c /Users/mario/Projects/redpanda/build/lib/redpanda/scanner.c",
+  "file": "/Users/mario/Projects/redpanda/build/lib/redpanda/scanner.c"
+},
+{
+  "directory": "/Users/mario/Projects/redpanda/build/lib/redpanda",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/cc -Dlibredpanda_EXPORTS -I/Users/mario/Projects/redpanda/build/lib/redpanda -I/Users/mario/Projects/redpanda/lib/redpanda/../../include -I/usr/local/Cellar/glib/2.60.0_1/include/glib-2.0 -I/usr/local/Cellar/glib/2.60.0_1/lib/glib-2.0/include   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fPIC   -std=gnu99 -o CMakeFiles/libredpanda.dir/redpanda.c.o   -c /Users/mario/Projects/redpanda/lib/redpanda/redpanda.c",
+  "file": "/Users/mario/Projects/redpanda/lib/redpanda/redpanda.c"
+},
+{
+  "directory": "/Users/mario/Projects/redpanda/build/lib/redpanda",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/cc -Dlibredpanda_EXPORTS -I/Users/mario/Projects/redpanda/build/lib/redpanda -I/Users/mario/Projects/redpanda/lib/redpanda/../../include -I/usr/local/Cellar/glib/2.60.0_1/include/glib-2.0 -I/usr/local/Cellar/glib/2.60.0_1/lib/glib-2.0/include   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fPIC   -std=gnu99 -o CMakeFiles/libredpanda.dir/node.c.o   -c /Users/mario/Projects/redpanda/lib/redpanda/node.c",
+  "file": "/Users/mario/Projects/redpanda/lib/redpanda/node.c"
+}
+]
