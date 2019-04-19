@@ -2,10 +2,12 @@
 #include <parser.h>
 #include <scanner.h>
 #include <stdio.h>
+#include <ast_printer.h>
 
-int yyparse_callback(struct ast_compile_unit *val) {
+int yyparse_callback(ast_compile_unit *val) {
     printf("callback called\n");
-    print_node((ast_node*)val);
+    ast_printer * printer = ast_printer__new();
+    ast_node__accept(val, printer);
     return 0;    
 }
 

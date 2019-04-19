@@ -6,7 +6,7 @@
 # Prerequisites
 *.d
 
-# Object files
+# object files
 *.o
 *.ko
 *.obj
@@ -59,7 +59,7 @@ dkms.conf
 ### C++ ###
 # Prerequisites
 
-# Compiled Object files
+# Compiled object files
 *.slo
 
 # Precompiled Headers

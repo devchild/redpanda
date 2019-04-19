@@ -77,7 +77,7 @@ string_literal         				{regular_string}|{verbatim_string}
 "##"[^\n]*				{ LOCATION_STEP (*yylloc); }
 
 [0-9]*\.[0-9]+ 			{ /* *yylval = val_new_int(yytext); return T_FLOAT; */ return T_FLOAT; }
-[0-9]+					{ /* *yylval = val_new_int(yytext); return T_INT; */ return T_INT; }
+[0-9]+					{ yylval->int_const = atoi(yytext); return T_INT; }
 "end"					{ return BLOCK_END;  }
 "return"				{ return T_RETURN; }
 "else"					{ return ELSE; }

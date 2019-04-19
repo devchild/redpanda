@@ -1,0 +1,4 @@
+# Hashes of file build rules.
+85e60b578b0f26ebe49b2d28180fda66 CMakeFiles/dist
+7c0e05ca4085948ddfe927eb44eb2cb3 lib/redpanda/parser.c
+bd8ed35dd077c197774342b7b8b94d0c lib/redpanda/scanner.c

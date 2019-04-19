@@ -14,6 +14,8 @@
 #include <math.h>
 #include <redpanda.h>
 
+typedef int (*node_callback_t)(struct ast_compile_unit *val);
+
 #ifndef YY_TYPEDEF_YY_SCANNER_T
 #define YY_TYPEDEF_YY_SCANNER_T
   typedef void *yyscan_t;
@@ -40,21 +42,21 @@ int yyerror(YYLTYPE * location, yyscan_t scanner, node_callback_t callback, cons
 }
 
 %union {
-    int int_const;
-    float float_const;
+    	int int_const;
+    	float float_const;
 
-int type_specifier;
-    char *identifier;
+	int type_specifier;
+    	char *identifier;
 
-ast_node *node;
-    ast_node_list *node_list;
+	ast_node *node;
+    	ast_node_list *node_list;
 }
 
-%token        				END      0 					"end-of-file"
-%token						EOL							"end-of-line"	
+%token        					END      0 					"end-of-file"
+%token						EOL						"end-of-line"
 %token						T_INDENT					"indentation"	
 %token						T_DEDENT					"dedentation"			
-%token						BLOCK_END   				"keyword end"
+%token						BLOCK_END   					"keyword end"
 %token						T_DEF   					"keyword def"
 %token						T_RETURN	  				"keyword return"
 %token						ELSE						"'else''"
@@ -70,7 +72,7 @@ ast_node *node;
 %token						T_OR   						"'|'"
 %token						T_PLUS   					"'+'"
 %token						T_MINUS   					"'-'"
-%token						T_MULTIPLY   				"'*'"
+%token						T_MULTIPLY   					"'*'"
 %token						T_DIVIDE	  				"'/'"
 %token						T_EQ	  					"'='"
 %token						T_NOT	  					"'!'"
@@ -82,17 +84,17 @@ ast_node *node;
 %token						T_SQRT	  					"'//'"
 %token						T_LT	  					"'<'"
 %token						T_GT	  					"'>'"
-%token						OP_LESS_THAN_OR_EQUAL	  	"'<='"
-%token						OP_GREATER_THAN_OR_EQUAL	"'>='"
+%token						OP_LESS_THAN_OR_EQUAL	  			"'<='"
+%token						OP_GREATER_THAN_OR_EQUAL			"'>='"
 
 %token						T_QM						"'?'"
-%token						OP_SHIFT_RIGHT				"'>>''"
-%token						OP_SHIFT_LEFT				"'<<''"
-%token						T_NEQ						"'!=''"
+%token						OP_SHIFT_RIGHT					"'>>'"
+%token						OP_SHIFT_LEFT					"'<<'"
+%token						T_NEQ						"'!='"
 %token						OP_OROR						"'||'"
 %token						OP_ANDAND					"'&&'"
 
-%type <node>     			compile_unit 
+%type <node>     		compile_unit
                             compile_unit_member 
                             expression 
                             non_assign_expression 
@@ -128,24 +130,34 @@ ast_node *node;
 
 %%
 
-compile_unit: compile_unit_member_list_opt 					{ $$ = (ast_node*)create_compile_unit((ast_compile_unit_member_list*)$1); callback((ast_compile_unit*)$$); }
-            ;
+compile_unit: compile_unit_member_list_opt 					{
+										$$ = (ast_node*)ast_compile_unit__new((ast_compile_unit_member_list*)$1); callback((ast_compile_unit*)$$);
+										}
+;
 
 compile_unit_member: method
                    | method_invoke_expression
 ;
 
-compile_unit_member_list: compile_unit_member  				{ 
-                        $$ = (ast_node_list*)create_compile_unit_member_list();  
-                                                                $$ = (ast_node_list*)node_list_add((ast_node_list*)$$, (ast_node*)$1); 
-                                                            }
-    | compile_unit_member_list compile_unit_member			{ $$ = (ast_node_list*)node_list_add((ast_node_list*)$1, (ast_node*)$2);  }
-    | compile_unit_member_list error compile_unit_member	{ $$ = (ast_node_list*)node_list_add((ast_node_list*)$1, (ast_node*)$3);  }
+compile_unit_member_list: compile_unit_member  					{
+                        							$$ = (ast_node_list*)ast_compile_unit_member_list__new();
+                                                                		$$ = (ast_node_list*)ast_node_list__push((ast_node_list*)$$, (ast_node*)$1);
+                                                            			}
+    | compile_unit_member_list compile_unit_member				{
+    										$$ = (ast_node_list*)ast_node_list__push((ast_node_list*)$1, (ast_node*)$2);
+    										}
+    | compile_unit_member_list error compile_unit_member			{
+    										$$ = (ast_node_list*)ast_node_list__push((ast_node_list*)$1, (ast_node*)$3);
+    										}
 ;
 
 compile_unit_member_list_opt: 
-                            /* empty */												{ $$ = NULL; }
-    | compile_unit_member_list								{ $$ = $1; }
+    /* empty */									{
+                            							$$ = NULL;
+                            							}
+    | compile_unit_member_list							{
+    										$$ = $1;
+    										}
 ;
 
 expression:  non_assign_expression
@@ -166,119 +178,119 @@ variable_reference_expression: T_IDENT {  }
 
 unary_expression: primary_expression  {  }
                 | T_PLUS unary_expression  {  }
-    | T_MINUS unary_expression  {  }
-    | T_LEFTP expression T_RIGHTP  {  } 
+    		| T_MINUS unary_expression  {  }
+    		| T_LEFTP expression T_RIGHTP  {  }
 ;
 
 primary_expression: primitive_expression
                   | method_invoke_expression
-    | variable_reference_expression
+    		  | variable_reference_expression
 ;
 
-primitive_expression: T_INT  								{ $$ = (ast_node*)create_const_int_expression($1); }
-                    | T_FLOAT  												{  }
-    | T_STRING  											{  }
+primitive_expression: T_INT  								{ $$ = (ast_node*)ast_primitive_expression__new_int($1); }
+                    | T_FLOAT  								{  }
+    		    | T_STRING  							{  }
 ;
 
 
 additive_expression: multiplicative_expression
-                   | additive_expression T_PLUS multiplicative_expression 	{ 
-                                                                $$ = (ast_node*)create_binary_expression ("+", (ast_node*)$1, (ast_node*)$3);
+                   | additive_expression T_PLUS multiplicative_expression {
+                                                                $$ = (ast_node*)ast_binary_expression__new ("+", (ast_node*)$1, (ast_node*)$3);
                                                             }
-    | additive_expression T_MINUS multiplicative_expression { 
-                                                                $$ = (ast_node*)create_binary_expression ("-", (ast_node*)$1, (ast_node*)$3);
+    		   | additive_expression T_MINUS multiplicative_expression {
+                                                                $$ = (ast_node*)ast_binary_expression__new ("-", (ast_node*)$1, (ast_node*)$3);
                                                             }
 ;
 
 multiplicative_expression: power_expression
                          | multiplicative_expression T_MULTIPLY power_expression { 
-                                                                $$ = (ast_node*)create_binary_expression ("*", (ast_node*)$1, (ast_node*)$3);
+                                                                $$ = (ast_node*)ast_binary_expression__new ("*", (ast_node*)$1, (ast_node*)$3);
                                                             }
     | multiplicative_expression T_DIVIDE power_expression 	{ 
-                                                                $$ = (ast_node*)create_binary_expression ("/", (ast_node*)$1, (ast_node*)$3);
+                                                                $$ = (ast_node*)ast_binary_expression__new ("/", (ast_node*)$1, (ast_node*)$3);
                                                             }
 ;
 
 power_expression: unary_expression
                 | power_expression T_POW unary_expression				{ 
-                                                                $$ = (ast_node*)create_binary_expression ("**", (ast_node*)$1, (ast_node*)$3);
+                                                                $$ = (ast_node*)ast_binary_expression__new ("**", (ast_node*)$1, (ast_node*)$3);
                                                             }
     | power_expression T_SQRT unary_expression 				{ 
-                                                                $$ = (ast_node*)create_binary_expression ("//", (ast_node*)$1, (ast_node*)$3);
+                                                                $$ = (ast_node*)ast_binary_expression__new ("//", (ast_node*)$1, (ast_node*)$3);
                                                             }
 ;
 
 binary_operator_expression: conditional_and_expression
                           | binary_operator_expression OP_OROR conditional_and_expression  	
                                                             { 
-                                                                $$ = (ast_node*)create_binary_expression ("||", (ast_node*)$1, (ast_node*)$3);
+                                                                $$ = (ast_node*)ast_binary_expression__new ("||", (ast_node*)$1, (ast_node*)$3);
                                                             }
 ;
 
 conditional_and_expression: inclusive_or_expression	
                           | conditional_and_expression OP_ANDAND inclusive_or_expression
                                                             { 
-                                                                $$ = (ast_node*)create_binary_expression ("&&", (ast_node*)$1, (ast_node*)$3);
+                                                                $$ = (ast_node*)ast_binary_expression__new ("&&", (ast_node*)$1, (ast_node*)$3);
                                                             }
 ;
 
 inclusive_or_expression: exclusive_or_expression
                        | inclusive_or_expression T_OR exclusive_or_expression 	{ 
-                                                                $$ = (ast_node*)create_binary_expression ("|", (ast_node*)$1, (ast_node*)$3);
+                                                                $$ = (ast_node*)ast_binary_expression__new ("|", (ast_node*)$1, (ast_node*)$3);
                                                             }
 ;
 
 exclusive_or_expression: and_expression
                        | exclusive_or_expression T_XOR and_expression 			{ 
-                                                                $$ = (ast_node*)create_binary_expression ("^", (ast_node*)$1, (ast_node*)$3);
+                                                                $$ = (ast_node*)ast_binary_expression__new ("^", (ast_node*)$1, (ast_node*)$3);
                                                             }
 ;
 
 and_expression: equality_expression						
               | and_expression T_AND equality_expression				{ 
-                                                                $$ = (ast_node*)create_binary_expression ("&", (ast_node*)$1, (ast_node*)$3);
+                                                                $$ = (ast_node*)ast_binary_expression__new ("&", (ast_node*)$1, (ast_node*)$3);
                                                             }
 ;
 
 equality_expression: relational_expression
                    | equality_expression T_EQ relational_expression		{ 
-                                                                $$ = (ast_node*)create_binary_expression ("==", (ast_node*)$1, (ast_node*)$3);
+                                                                $$ = (ast_node*)ast_binary_expression__new ("==", (ast_node*)$1, (ast_node*)$3);
                                                             }
     | equality_expression T_NEQ relational_expression  		{ 
-                                                                $$ = (ast_node*)create_binary_expression ("!=", (ast_node*)$1, (ast_node*)$3);
+                                                                $$ = (ast_node*)ast_binary_expression__new ("!=", (ast_node*)$1, (ast_node*)$3);
                                                             }
 ;
 
 relational_expression: shift_expression						
                      | relational_expression T_LT shift_expression 			{ 
-                                                                $$ = (ast_node*)create_binary_expression ("<", (ast_node*)$1, (ast_node*)$3);
+                                                                $$ = (ast_node*)ast_binary_expression__new ("<", (ast_node*)$1, (ast_node*)$3);
                                                             }
     | relational_expression T_GT shift_expression 			{ 
-                                                                $$ = (ast_node*)create_binary_expression (">", (ast_node*)$1, (ast_node*)$3);
+                                                                $$ = (ast_node*)ast_binary_expression__new (">", (ast_node*)$1, (ast_node*)$3);
                                                             }
     | relational_expression OP_LESS_THAN_OR_EQUAL shift_expression 	
                                                             { 
-                                                                $$ = (ast_node*)create_binary_expression ("<=", (ast_node*)$1, (ast_node*)$3);
+                                                                $$ = (ast_node*)ast_binary_expression__new ("<=", (ast_node*)$1, (ast_node*)$3);
                                                             }
     | relational_expression OP_GREATER_THAN_OR_EQUAL shift_expression 	
                                                             { 
-                                                                $$ = (ast_node*)create_binary_expression (">=", (ast_node*)$1, (ast_node*)$3);
+                                                                $$ = (ast_node*)ast_binary_expression__new (">=", (ast_node*)$1, (ast_node*)$3);
                                                             }
 ;
 
 shift_expression: additive_expression 					
                 | shift_expression OP_SHIFT_LEFT additive_expression 	{ 
-                                                                $$ = (ast_node*)create_binary_expression ("<<", (ast_node*)$1, (ast_node*)$3);
+                                                                $$ = (ast_node*)ast_binary_expression__new ("<<", (ast_node*)$1, (ast_node*)$3);
                                                             }
     | shift_expression OP_SHIFT_RIGHT additive_expression 	{ 
-                                                                $$ = (ast_node*)create_binary_expression (">>", (ast_node*)$1, (ast_node*)$3);
+                                                                $$ = (ast_node*)ast_binary_expression__new (">>", (ast_node*)$1, (ast_node*)$3);
                                                             }
 ;
 
 method_invoke_expression: method_reference_expression T_LEFTP T_RIGHTP	{ $$ = NULL; }
                         ;
 
-method_reference_expression: T_IDENT  { $$ = $1; }
+method_reference_expression: T_IDENT  			{ 	$$ = $1; }
                            ;
 
 expression_statement: statement_expression
@@ -288,7 +300,7 @@ statement_expression: method_invoke_expression
                     | assign_expression
 ;
 
-return_statement: T_RETURN expression 	{ $$ = (ast_node*)create_return_statement($2); }
+return_statement: T_RETURN expression 			{ 	$$ = (ast_node*)ast_return_statement__new($2); }
                 ;
 
 condition_statement: T_IF binary_operator_expression T_COLON statement_list BLOCK_END  {  }
@@ -301,18 +313,19 @@ statement: expression_statement
 ;
 
 statement_list: statement				{ 
-              $$ = (ast_node_list*)create_statement_list();
-                                            $$ = (ast_node_list*)node_list_add((ast_node_list*)$$, (ast_node*)$1);
-                                        }
-    | statement_list statement			{	$$ = (ast_node_list*)node_list_add((ast_node_list*)$1, (ast_node*)$2); }
-    | statement_list error statement 	{	$$ = (ast_node_list*)node_list_add((ast_node_list*)$1, (ast_node*)$3); }
+              							ast_node_list* tmp = ast_statement_list__new();
+                                            			ast_node_list__push(tmp, $1);
+                                            			$$ = tmp;
+                                        		}
+    | statement_list statement				{	$$ = (ast_node_list*)ast_node_list__push((ast_node_list*)$1, (ast_node*)$2); }
+    | statement_list error statement 			{	$$ = (ast_node_list*)ast_node_list__push((ast_node_list*)$1, (ast_node*)$3); }
 ;
 
 method:
       T_DEF T_IDENT T_LEFTP T_RIGHTP T_COLON T_INDENT statement_list T_DEDENT 
-                                        {	
-                                            $$ = (ast_node*)create_method($2, (ast_statement_list*)$7);
-                                        }
+                                        		{
+                                            		$$ = (ast_node*)ast_method__new($2, (ast_statement_list*)$7);
+                                        		}
 ;
 
 %%

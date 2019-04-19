@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="redpanda"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="clang"/>
+		<Option virtualFolders="CMake Files\;CMake Files\tools\;CMake Files\tools\redpanda\;CMake Files\lib\;CMake Files\lib\redpanda\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/mario/Projects/redpanda/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/mario/Projects/redpanda/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/mario/Projects/redpanda/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/mario/Projects/redpanda/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/mario/Projects/redpanda/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/mario/Projects/redpanda/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/mario/Projects/redpanda/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/mario/Projects/redpanda/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/mario/Projects/redpanda/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/mario/Projects/redpanda/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/mario/Projects/redpanda/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/mario/Projects/redpanda/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/mario/Projects/redpanda/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/mario/Projects/redpanda/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/mario/Projects/redpanda/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="dist">
+				<Option working_dir="/Users/mario/Projects/redpanda/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/mario/Projects/redpanda/cmake-build-debug/Makefile&quot;  VERBOSE=1 dist"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/mario/Projects/redpanda/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/mario/Projects/redpanda/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/mario/Projects/redpanda/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="redpanda">
+				<Option output="/Users/mario/Projects/redpanda/cmake-build-debug/bin/redpanda" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/mario/Projects/redpanda/cmake-build-debug/bin"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add directory="/Users/mario/Projects/redpanda/tools/redpanda/../../include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/10.0.1/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/mario/Projects/redpanda/cmake-build-debug/tools/redpanda/Makefile&quot;  VERBOSE=1 redpanda"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/mario/Projects/redpanda/cmake-build-debug/tools/redpanda/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/mario/Projects/redpanda/cmake-build-debug/tools/redpanda/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/mario/Projects/redpanda/cmake-build-debug/tools/redpanda/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="redpanda/fast">
+				<Option output="/Users/mario/Projects/redpanda/cmake-build-debug/bin/redpanda" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/mario/Projects/redpanda/cmake-build-debug/bin"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add directory="/Users/mario/Projects/redpanda/tools/redpanda/../../include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/10.0.1/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/mario/Projects/redpanda/cmake-build-debug/tools/redpanda/Makefile&quot;  VERBOSE=1 redpanda/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/mario/Projects/redpanda/cmake-build-debug/tools/redpanda/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/mario/Projects/redpanda/cmake-build-debug/tools/redpanda/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/mario/Projects/redpanda/cmake-build-debug/tools/redpanda/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="libredpanda">
+				<Option output="/Users/mario/Projects/redpanda/cmake-build-debug/lib/libredpanda.dylib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/mario/Projects/redpanda/cmake-build-debug/lib/redpanda"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add directory="/Users/mario/Projects/redpanda/cmake-build-debug/lib/redpanda"/>
+					<Add directory="/Users/mario/Projects/redpanda/lib/redpanda/../../include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/10.0.1/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/mario/Projects/redpanda/cmake-build-debug/lib/redpanda/Makefile&quot;  VERBOSE=1 libredpanda"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/mario/Projects/redpanda/cmake-build-debug/lib/redpanda/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/mario/Projects/redpanda/cmake-build-debug/lib/redpanda/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/mario/Projects/redpanda/cmake-build-debug/lib/redpanda/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="libredpanda/fast">
+				<Option output="/Users/mario/Projects/redpanda/cmake-build-debug/lib/libredpanda.dylib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/mario/Projects/redpanda/cmake-build-debug/lib/redpanda"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add directory="/Users/mario/Projects/redpanda/cmake-build-debug/lib/redpanda"/>
+					<Add directory="/Users/mario/Projects/redpanda/lib/redpanda/../../include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/10.0.1/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/mario/Projects/redpanda/cmake-build-debug/lib/redpanda/Makefile&quot;  VERBOSE=1 libredpanda/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/mario/Projects/redpanda/cmake-build-debug/lib/redpanda/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/mario/Projects/redpanda/cmake-build-debug/lib/redpanda/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/mario/Projects/redpanda/cmake-build-debug/lib/redpanda/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/mario/Projects/redpanda/cmake-build-debug/lib/redpanda/parser.c">
+			<Option target="libredpanda"/>
+		</Unit>
+		<Unit filename="/Users/mario/Projects/redpanda/cmake-build-debug/lib/redpanda/parser.c.rule">
+			<Option target="libredpanda"/>
+		</Unit>
+		<Unit filename="/Users/mario/Projects/redpanda/cmake-build-debug/lib/redpanda/parser.h">
+			<Option target="libredpanda"/>
+		</Unit>
+		<Unit filename="/Users/mario/Projects/redpanda/cmake-build-debug/lib/redpanda/scanner.c">
+			<Option target="libredpanda"/>
+		</Unit>
+		<Unit filename="/Users/mario/Projects/redpanda/cmake-build-debug/lib/redpanda/scanner.c.rule">
+			<Option target="libredpanda"/>
+		</Unit>
+		<Unit filename="/Users/mario/Projects/redpanda/cmake-build-debug/lib/redpanda/scanner.h">
+			<Option target="libredpanda"/>
+		</Unit>
+		<Unit filename="/Users/mario/Projects/redpanda/include/ast_binary_expression.h">
+			<Option target="libredpanda"/>
+		</Unit>
+		<Unit filename="/Users/mario/Projects/redpanda/include/ast_compile_unit.h">
+			<Option target="libredpanda"/>
+		</Unit>
+		<Unit filename="/Users/mario/Projects/redpanda/include/ast_compile_unit_member_list.h">
+			<Option target="libredpanda"/>
+		</Unit>
+		<Unit filename="/Users/mario/Projects/redpanda/include/ast_compound_statement.h">
+			<Option target="libredpanda"/>
+		</Unit>
+		<Unit filename="/Users/mario/Projects/redpanda/include/ast_declaration.h">
+			<Option target="libredpanda"/>
+		</Unit>
+		<Unit filename="/Users/mario/Projects/redpanda/include/ast_method.h">
+			<Option target="libredpanda"/>
+		</Unit>
+		<Unit filename="/Users/mario/Projects/redpanda/include/ast_node.h">
+			<Option target="libredpanda"/>
+		</Unit>
+		<Unit filename="/Users/mario/Projects/redpanda/include/ast_node_list.h">
+			<Option target="libredpanda"/>
+		</Unit>
+		<Unit filename="/Users/mario/Projects/redpanda/include/ast_node_visitor.h">
+			<Option target="libredpanda"/>
+		</Unit>
+		<Unit filename="/Users/mario/Projects/redpanda/include/ast_primitive_expression.h">
+			<Option target="libredpanda"/>
+		</Unit>
+		<Unit filename="/Users/mario/Projects/redpanda/include/ast_printer.h">
+			<Option target="libredpanda"/>
+		</Unit>
+		<Unit filename="/Users/mario/Projects/redpanda/include/ast_return_statement.h">
+			<Option target="libredpanda"/>
+		</Unit>
+		<Unit filename="/Users/mario/Projects/redpanda/include/ast_selection_statement.h">
+			<Option target="libredpanda"/>
+		</Unit>
+		<Unit filename="/Users/mario/Projects/redpanda/include/ast_statement_list.h">
+			<Option target="libredpanda"/>
+		</Unit>
+		<Unit filename="/Users/mario/Projects/redpanda/include/ast_while_statement.h">
+			<Option target="libredpanda"/>
+		</Unit>
+		<Unit filename="/Users/mario/Projects/redpanda/include/object.h">
+			<Option target="libredpanda"/>
+		</Unit>
+		<Unit filename="/Users/mario/Projects/redpanda/include/redpanda.h">
+			<Option target="libredpanda"/>
+		</Unit>
+		<Unit filename="/Users/mario/Projects/redpanda/include/stack.h">
+			<Option target="libredpanda"/>
+		</Unit>
+		<Unit filename="/Users/mario/Projects/redpanda/lib/redpanda/ast_binary_expression.c">
+			<Option target="libredpanda"/>
+		</Unit>
+		<Unit filename="/Users/mario/Projects/redpanda/lib/redpanda/ast_compile_unit.c">
+			<Option target="libredpanda"/>
+		</Unit>
+		<Unit filename="/Users/mario/Projects/redpanda/lib/redpanda/ast_compile_unit_member_list.c">
+			<Option target="libredpanda"/>
+		</Unit>
+		<Unit filename="/Users/mario/Projects/redpanda/lib/redpanda/ast_compound_statement.c">
+			<Option target="libredpanda"/>
+		</Unit>
+		<Unit filename="/Users/mario/Projects/redpanda/lib/redpanda/ast_declaration.c">
+			<Option target="libredpanda"/>
+		</Unit>
+		<Unit filename="/Users/mario/Projects/redpanda/lib/redpanda/ast_method.c">
+			<Option target="libredpanda"/>
+		</Unit>
+		<Unit filename="/Users/mario/Projects/redpanda/lib/redpanda/ast_node.c">
+			<Option target="libredpanda"/>
+		</Unit>
+		<Unit filename="/Users/mario/Projects/redpanda/lib/redpanda/ast_node_list.c">
+			<Option target="libredpanda"/>
+		</Unit>
+		<Unit filename="/Users/mario/Projects/redpanda/lib/redpanda/ast_node_visitor.c">
+			<Option target="libredpanda"/>
+		</Unit>
+		<Unit filename="/Users/mario/Projects/redpanda/lib/redpanda/ast_primitive_expression.c">
+			<Option target="libredpanda"/>
+		</Unit>
+		<Unit filename="/Users/mario/Projects/redpanda/lib/redpanda/ast_printer.c">
+			<Option target="libredpanda"/>
+		</Unit>
+		<Unit filename="/Users/mario/Projects/redpanda/lib/redpanda/ast_return_statement.c">
+			<Option target="libredpanda"/>
+		</Unit>
+		<Unit filename="/Users/mario/Projects/redpanda/lib/redpanda/ast_selection_statement.c">
+			<Option target="libredpanda"/>
+		</Unit>
+		<Unit filename="/Users/mario/Projects/redpanda/lib/redpanda/ast_statement_list.c">
+			<Option target="libredpanda"/>
+		</Unit>
+		<Unit filename="/Users/mario/Projects/redpanda/lib/redpanda/ast_while_statement.c">
+			<Option target="libredpanda"/>
+		</Unit>
+		<Unit filename="/Users/mario/Projects/redpanda/lib/redpanda/object.c">
+			<Option target="libredpanda"/>
+		</Unit>
+		<Unit filename="/Users/mario/Projects/redpanda/lib/redpanda/redpanda.c">
+			<Option target="libredpanda"/>
+		</Unit>
+		<Unit filename="/Users/mario/Projects/redpanda/tools/redpanda/program.c">
+			<Option target="redpanda"/>
+		</Unit>
+		<Unit filename="/Users/mario/Projects/redpanda/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/Users/mario/Projects/redpanda/tools/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\tools\"/>
+		</Unit>
+		<Unit filename="/Users/mario/Projects/redpanda/tools/redpanda/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\tools\redpanda\"/>
+		</Unit>
+		<Unit filename="/Users/mario/Projects/redpanda/lib/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\lib\"/>
+		</Unit>
+		<Unit filename="/Users/mario/Projects/redpanda/lib/redpanda/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\lib\redpanda\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

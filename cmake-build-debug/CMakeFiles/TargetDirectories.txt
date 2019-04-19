@@ -1,0 +1,13 @@
+/Users/mario/Projects/redpanda/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/mario/Projects/redpanda/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/mario/Projects/redpanda/cmake-build-debug/CMakeFiles/dist.dir
+/Users/mario/Projects/redpanda/cmake-build-debug/tools/CMakeFiles/rebuild_cache.dir
+/Users/mario/Projects/redpanda/cmake-build-debug/tools/CMakeFiles/edit_cache.dir
+/Users/mario/Projects/redpanda/cmake-build-debug/tools/redpanda/CMakeFiles/rebuild_cache.dir
+/Users/mario/Projects/redpanda/cmake-build-debug/tools/redpanda/CMakeFiles/edit_cache.dir
+/Users/mario/Projects/redpanda/cmake-build-debug/tools/redpanda/CMakeFiles/redpanda.dir
+/Users/mario/Projects/redpanda/cmake-build-debug/lib/CMakeFiles/rebuild_cache.dir
+/Users/mario/Projects/redpanda/cmake-build-debug/lib/CMakeFiles/edit_cache.dir
+/Users/mario/Projects/redpanda/cmake-build-debug/lib/redpanda/CMakeFiles/rebuild_cache.dir
+/Users/mario/Projects/redpanda/cmake-build-debug/lib/redpanda/CMakeFiles/edit_cache.dir
+/Users/mario/Projects/redpanda/cmake-build-debug/lib/redpanda/CMakeFiles/libredpanda.dir
