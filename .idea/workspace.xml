@@ -14,48 +14,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d8ea0904-689c-46b6-9df5-3fcb13519f64" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/include/ast_binary_expression.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/include/ast_compile_unit.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/include/ast_compile_unit_member_list.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/include/ast_compound_statement.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/include/ast_declaration.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/include/ast_method.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/include/ast_node.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/include/ast_node_list.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/include/ast_node_visitor.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/include/ast_primitive_expression.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/include/ast_printer.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/include/ast_return_statement.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/include/ast_selection_statement.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/include/ast_statement_list.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/include/ast_while_statement.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/include/object.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/redpanda/ast_binary_expression.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/redpanda/ast_compile_unit.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/redpanda/ast_compile_unit_member_list.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/redpanda/ast_compound_statement.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/redpanda/ast_declaration.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/redpanda/ast_method.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/redpanda/ast_node.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/redpanda/ast_node_list.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/redpanda/ast_node_visitor.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/redpanda/ast_primitive_expression.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/redpanda/ast_printer.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/redpanda/ast_return_statement.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/redpanda/ast_selection_statement.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/redpanda/ast_statement_list.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/redpanda/ast_while_statement.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/redpanda/object.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compile_commands.json" beforeDir="false" afterPath="$PROJECT_DIR$/compile_commands.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/node.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/redpanda.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/redpanda.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/redpanda/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/lib/redpanda/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/redpanda/node.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/redpanda/parser.y" beforeDir="false" afterPath="$PROJECT_DIR$/lib/redpanda/parser.y" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/redpanda/redpanda.c" beforeDir="false" afterPath="$PROJECT_DIR$/lib/redpanda/redpanda.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/redpanda/scanner.l" beforeDir="false" afterPath="$PROJECT_DIR$/lib/redpanda/scanner.l" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/redpanda/program.c" beforeDir="false" afterPath="$PROJECT_DIR$/tools/redpanda/program.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.travis.yml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -70,14 +29,23 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/redpanda/ast_printer.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="690">
+            <state relative-caret-position="149">
               <caret line="46" column="16" selection-start-line="46" selection-start-column="16" selection-end-line="46" selection-end-column="16" />
               <folding>
                 <element signature="e#50#69#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.travis.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="224">
+              <caret line="15" column="52" selection-start-line="15" selection-start-column="52" selection-end-line="15" selection-end-column="52" />
             </state>
           </provider>
         </entry>
@@ -262,6 +230,7 @@
         <option value="$PROJECT_DIR$/lib/redpanda/ast_primitive_expression.c" />
         <option value="$PROJECT_DIR$/lib/redpanda/scanner.l" />
         <option value="$PROJECT_DIR$/lib/redpanda/ast_printer.c" />
+        <option value="$PROJECT_DIR$/.travis.yml" />
       </list>
     </option>
   </component>
@@ -279,11 +248,10 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="940" />
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="23" />
-    <option name="width" value="1752" />
-    <option name="height" value="1462" />
+    <option name="width" value="1680" />
+    <option name="height" value="952" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -300,33 +268,6 @@
               <item name="redpanda" type="b2602c69:ProjectViewProjectNode" />
               <item name="redpanda" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="redpanda" type="b2602c69:ProjectViewProjectNode" />
-              <item name="redpanda" type="462c0819:PsiDirectoryNode" />
-              <item name="include" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="redpanda" type="b2602c69:ProjectViewProjectNode" />
-              <item name="redpanda" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="redpanda" type="b2602c69:ProjectViewProjectNode" />
-              <item name="redpanda" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="redpanda" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="redpanda" type="b2602c69:ProjectViewProjectNode" />
-              <item name="redpanda" type="462c0819:PsiDirectoryNode" />
-              <item name="tools" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="redpanda" type="b2602c69:ProjectViewProjectNode" />
-              <item name="redpanda" type="462c0819:PsiDirectoryNode" />
-              <item name="tools" type="462c0819:PsiDirectoryNode" />
-              <item name="redpanda" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -336,6 +277,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
@@ -388,23 +330,23 @@
       <workItem from="1555536277874" duration="28000" />
       <workItem from="1555536318624" duration="22456000" />
       <workItem from="1555616259043" duration="4623000" />
-      <workItem from="1555621403298" duration="11236000" />
+      <workItem from="1555621403298" duration="12211000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40297000" />
+    <option name="totallyTimeSpent" value="41272000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="940" y="23" width="1752" height="1462" extended-state="0" />
+    <frame x="0" y="23" width="1680" height="952" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20760234" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21672772" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.329927" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.26569343" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.4232558" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3080292" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -439,9 +381,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.travis.yml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -816,11 +755,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/redpanda/ast_printer.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
+        <state relative-caret-position="149">
           <caret line="46" column="16" selection-start-line="46" selection-start-column="16" selection-end-line="46" selection-end-column="16" />
           <folding>
             <element signature="e#50#69#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.travis.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="15" column="52" selection-start-line="15" selection-start-column="52" selection-end-line="15" selection-end-column="52" />
         </state>
       </provider>
     </entry>
