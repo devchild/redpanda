@@ -72,10 +72,6 @@ ast_while_statement.h
 ast_node.h
 -
 
-../lib/redpanda/../../include/ast_printer.h
-ast_node_visitor.h
--
-
 ../lib/redpanda/../../include/ast_return_statement.h
 ast_node.h
 -
@@ -100,13 +96,19 @@ ast_binary_expression.h
 ast_compound_statement.h
 -
 
+../lib/redpanda/../../include/code_generator.h
+ast_node_visitor.h
+-
+stdio.h
+-
+
 ../lib/redpanda/../../include/object.h
 
-/Users/mario/Projects/redpanda/lib/redpanda/ast_printer.c
+/Users/mario/Projects/redpanda/lib/redpanda/code_generator.c
 stdlib.h
 -
 stdio.h
 -
-ast_printer.h
+code_generator.h
 -
 

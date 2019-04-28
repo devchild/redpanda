@@ -35,6 +35,7 @@ extern "C" {
 #endif
 
 	LIBRARY_API int parser_parse(FILE* in, FILE* out);
+    LIBRARY_API int compiler__compile(const char* fileName);
 
 #ifdef __cplusplus
 }

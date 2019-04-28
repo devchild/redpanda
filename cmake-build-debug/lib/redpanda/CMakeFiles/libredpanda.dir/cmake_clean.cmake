@@ -20,6 +20,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/libredpanda.dir/ast_while_statement.c.o"
   "CMakeFiles/libredpanda.dir/ast_node_visitor.c.o"
   "CMakeFiles/libredpanda.dir/ast_printer.c.o"
+  "CMakeFiles/libredpanda.dir/code_generator.c.o"
   "../libredpanda.pdb"
   "../libredpanda.dylib"
 )

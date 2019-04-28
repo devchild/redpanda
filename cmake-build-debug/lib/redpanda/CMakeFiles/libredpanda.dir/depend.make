@@ -218,6 +218,24 @@ lib/redpanda/CMakeFiles/libredpanda.dir/ast_while_statement.c.o: ../lib/redpanda
 lib/redpanda/CMakeFiles/libredpanda.dir/ast_while_statement.c.o: ../lib/redpanda/../../include/object.h
 lib/redpanda/CMakeFiles/libredpanda.dir/ast_while_statement.c.o: ../lib/redpanda/ast_while_statement.c
 
+lib/redpanda/CMakeFiles/libredpanda.dir/code_generator.c.o: ../lib/redpanda/../../include/ast_binary_expression.h
+lib/redpanda/CMakeFiles/libredpanda.dir/code_generator.c.o: ../lib/redpanda/../../include/ast_compile_unit.h
+lib/redpanda/CMakeFiles/libredpanda.dir/code_generator.c.o: ../lib/redpanda/../../include/ast_compile_unit_member_list.h
+lib/redpanda/CMakeFiles/libredpanda.dir/code_generator.c.o: ../lib/redpanda/../../include/ast_compound_statement.h
+lib/redpanda/CMakeFiles/libredpanda.dir/code_generator.c.o: ../lib/redpanda/../../include/ast_declaration.h
+lib/redpanda/CMakeFiles/libredpanda.dir/code_generator.c.o: ../lib/redpanda/../../include/ast_method.h
+lib/redpanda/CMakeFiles/libredpanda.dir/code_generator.c.o: ../lib/redpanda/../../include/ast_node.h
+lib/redpanda/CMakeFiles/libredpanda.dir/code_generator.c.o: ../lib/redpanda/../../include/ast_node_list.h
+lib/redpanda/CMakeFiles/libredpanda.dir/code_generator.c.o: ../lib/redpanda/../../include/ast_node_visitor.h
+lib/redpanda/CMakeFiles/libredpanda.dir/code_generator.c.o: ../lib/redpanda/../../include/ast_primitive_expression.h
+lib/redpanda/CMakeFiles/libredpanda.dir/code_generator.c.o: ../lib/redpanda/../../include/ast_return_statement.h
+lib/redpanda/CMakeFiles/libredpanda.dir/code_generator.c.o: ../lib/redpanda/../../include/ast_selection_statement.h
+lib/redpanda/CMakeFiles/libredpanda.dir/code_generator.c.o: ../lib/redpanda/../../include/ast_statement_list.h
+lib/redpanda/CMakeFiles/libredpanda.dir/code_generator.c.o: ../lib/redpanda/../../include/ast_while_statement.h
+lib/redpanda/CMakeFiles/libredpanda.dir/code_generator.c.o: ../lib/redpanda/../../include/code_generator.h
+lib/redpanda/CMakeFiles/libredpanda.dir/code_generator.c.o: ../lib/redpanda/../../include/object.h
+lib/redpanda/CMakeFiles/libredpanda.dir/code_generator.c.o: ../lib/redpanda/code_generator.c
+
 lib/redpanda/CMakeFiles/libredpanda.dir/object.c.o: ../lib/redpanda/../../include/object.h
 lib/redpanda/CMakeFiles/libredpanda.dir/object.c.o: ../lib/redpanda/object.c
 
@@ -255,6 +273,7 @@ lib/redpanda/CMakeFiles/libredpanda.dir/redpanda.c.o: ../lib/redpanda/../../incl
 lib/redpanda/CMakeFiles/libredpanda.dir/redpanda.c.o: ../lib/redpanda/../../include/ast_selection_statement.h
 lib/redpanda/CMakeFiles/libredpanda.dir/redpanda.c.o: ../lib/redpanda/../../include/ast_statement_list.h
 lib/redpanda/CMakeFiles/libredpanda.dir/redpanda.c.o: ../lib/redpanda/../../include/ast_while_statement.h
+lib/redpanda/CMakeFiles/libredpanda.dir/redpanda.c.o: ../lib/redpanda/../../include/code_generator.h
 lib/redpanda/CMakeFiles/libredpanda.dir/redpanda.c.o: ../lib/redpanda/../../include/object.h
 lib/redpanda/CMakeFiles/libredpanda.dir/redpanda.c.o: ../lib/redpanda/../../include/redpanda.h
 lib/redpanda/CMakeFiles/libredpanda.dir/redpanda.c.o: ../lib/redpanda/redpanda.c

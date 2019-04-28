@@ -530,6 +530,33 @@ ast_while_statement.c.s:
 	cd /Users/mario/Projects/redpanda/cmake-build-debug && $(MAKE) -f lib/redpanda/CMakeFiles/libredpanda.dir/build.make lib/redpanda/CMakeFiles/libredpanda.dir/ast_while_statement.c.s
 .PHONY : ast_while_statement.c.s
 
+code_generator.o: code_generator.c.o
+
+.PHONY : code_generator.o
+
+# target to build an object file
+code_generator.c.o:
+	cd /Users/mario/Projects/redpanda/cmake-build-debug && $(MAKE) -f lib/redpanda/CMakeFiles/libredpanda.dir/build.make lib/redpanda/CMakeFiles/libredpanda.dir/code_generator.c.o
+.PHONY : code_generator.c.o
+
+code_generator.i: code_generator.c.i
+
+.PHONY : code_generator.i
+
+# target to preprocess a source file
+code_generator.c.i:
+	cd /Users/mario/Projects/redpanda/cmake-build-debug && $(MAKE) -f lib/redpanda/CMakeFiles/libredpanda.dir/build.make lib/redpanda/CMakeFiles/libredpanda.dir/code_generator.c.i
+.PHONY : code_generator.c.i
+
+code_generator.s: code_generator.c.s
+
+.PHONY : code_generator.s
+
+# target to generate assembly for a file
+code_generator.c.s:
+	cd /Users/mario/Projects/redpanda/cmake-build-debug && $(MAKE) -f lib/redpanda/CMakeFiles/libredpanda.dir/build.make lib/redpanda/CMakeFiles/libredpanda.dir/code_generator.c.s
+.PHONY : code_generator.c.s
+
 object.o: object.c.o
 
 .PHONY : object.o
@@ -692,6 +719,9 @@ help:
 	@echo "... ast_while_statement.o"
 	@echo "... ast_while_statement.i"
 	@echo "... ast_while_statement.s"
+	@echo "... code_generator.o"
+	@echo "... code_generator.i"
+	@echo "... code_generator.s"
 	@echo "... object.o"
 	@echo "... object.i"
 	@echo "... object.s"

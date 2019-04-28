@@ -19,6 +19,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/Users/mario/Projects/redpanda/lib/redpanda/ast_selection_statement.c" "/Users/mario/Projects/redpanda/cmake-build-debug/lib/redpanda/CMakeFiles/libredpanda.dir/ast_selection_statement.c.o"
   "/Users/mario/Projects/redpanda/lib/redpanda/ast_statement_list.c" "/Users/mario/Projects/redpanda/cmake-build-debug/lib/redpanda/CMakeFiles/libredpanda.dir/ast_statement_list.c.o"
   "/Users/mario/Projects/redpanda/lib/redpanda/ast_while_statement.c" "/Users/mario/Projects/redpanda/cmake-build-debug/lib/redpanda/CMakeFiles/libredpanda.dir/ast_while_statement.c.o"
+  "/Users/mario/Projects/redpanda/lib/redpanda/code_generator.c" "/Users/mario/Projects/redpanda/cmake-build-debug/lib/redpanda/CMakeFiles/libredpanda.dir/code_generator.c.o"
   "/Users/mario/Projects/redpanda/lib/redpanda/object.c" "/Users/mario/Projects/redpanda/cmake-build-debug/lib/redpanda/CMakeFiles/libredpanda.dir/object.c.o"
   "/Users/mario/Projects/redpanda/cmake-build-debug/lib/redpanda/parser.c" "/Users/mario/Projects/redpanda/cmake-build-debug/lib/redpanda/CMakeFiles/libredpanda.dir/parser.c.o"
   "/Users/mario/Projects/redpanda/lib/redpanda/redpanda.c" "/Users/mario/Projects/redpanda/cmake-build-debug/lib/redpanda/CMakeFiles/libredpanda.dir/redpanda.c.o"

@@ -93,5 +93,15 @@
   "directory": "/Users/mario/Projects/redpanda/cmake-build-debug/lib/redpanda",
   "command": "/Library/Developer/CommandLineTools/usr/bin/cc -Dlibredpanda_EXPORTS -I/Users/mario/Projects/redpanda/cmake-build-debug/lib/redpanda -I/Users/mario/Projects/redpanda/lib/redpanda/../../include  -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fPIC   -std=gnu99 -o CMakeFiles/libredpanda.dir/ast_node_visitor.c.o   -c /Users/mario/Projects/redpanda/lib/redpanda/ast_node_visitor.c",
   "file": "/Users/mario/Projects/redpanda/lib/redpanda/ast_node_visitor.c"
+},
+{
+  "directory": "/Users/mario/Projects/redpanda/cmake-build-debug/lib/redpanda",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/cc -Dlibredpanda_EXPORTS -I/Users/mario/Projects/redpanda/cmake-build-debug/lib/redpanda -I/Users/mario/Projects/redpanda/lib/redpanda/../../include  -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fPIC   -std=gnu99 -o CMakeFiles/libredpanda.dir/ast_printer.c.o   -c /Users/mario/Projects/redpanda/lib/redpanda/ast_printer.c",
+  "file": "/Users/mario/Projects/redpanda/lib/redpanda/ast_printer.c"
+},
+{
+  "directory": "/Users/mario/Projects/redpanda/cmake-build-debug/lib/redpanda",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/cc -Dlibredpanda_EXPORTS -I/Users/mario/Projects/redpanda/cmake-build-debug/lib/redpanda -I/Users/mario/Projects/redpanda/lib/redpanda/../../include  -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -fPIC   -std=gnu99 -o CMakeFiles/libredpanda.dir/code_generator.c.o   -c /Users/mario/Projects/redpanda/lib/redpanda/code_generator.c",
+  "file": "/Users/mario/Projects/redpanda/lib/redpanda/code_generator.c"
 }
 ]

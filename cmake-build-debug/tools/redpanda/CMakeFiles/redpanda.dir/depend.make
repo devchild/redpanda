@@ -15,6 +15,7 @@ tools/redpanda/CMakeFiles/redpanda.dir/program.c.o: ../tools/redpanda/../../incl
 tools/redpanda/CMakeFiles/redpanda.dir/program.c.o: ../tools/redpanda/../../include/ast_selection_statement.h
 tools/redpanda/CMakeFiles/redpanda.dir/program.c.o: ../tools/redpanda/../../include/ast_statement_list.h
 tools/redpanda/CMakeFiles/redpanda.dir/program.c.o: ../tools/redpanda/../../include/ast_while_statement.h
+tools/redpanda/CMakeFiles/redpanda.dir/program.c.o: ../tools/redpanda/../../include/code_generator.h
 tools/redpanda/CMakeFiles/redpanda.dir/program.c.o: ../tools/redpanda/../../include/object.h
 tools/redpanda/CMakeFiles/redpanda.dir/program.c.o: ../tools/redpanda/../../include/redpanda.h
 tools/redpanda/CMakeFiles/redpanda.dir/program.c.o: ../tools/redpanda/program.c

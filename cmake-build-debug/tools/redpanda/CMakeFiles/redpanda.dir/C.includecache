@@ -96,6 +96,12 @@ ast_binary_expression.h
 ast_compound_statement.h
 -
 
+../tools/redpanda/../../include/code_generator.h
+ast_node_visitor.h
+-
+stdio.h
+-
+
 ../tools/redpanda/../../include/object.h
 
 ../tools/redpanda/../../include/redpanda.h
@@ -138,5 +144,7 @@ stdlib.h
 string.h
 -
 redpanda.h
+-
+code_generator.h
 -
 

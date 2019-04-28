@@ -59,7 +59,7 @@ SET(HEADER_FILES
         ../../include/ast_declaration.h
         ../../include/ast_selection_statement.h
         ../../include/ast_compound_statement.h
-        ../../include/ast_while_statement.h ../../include/ast_node_visitor.h ../../include/ast_printer.h)
+        ../../include/ast_while_statement.h ../../include/ast_node_visitor.h ../../include/ast_printer.h ../../include/code_generator.h)
 
 set(PROJECT_FILES
         ${HEADER_FILES}
@@ -80,7 +80,7 @@ set(PROJECT_FILES
         ast_selection_statement.c
         ast_statement_list.c
         ast_while_statement.c
-        ast_node_visitor.c ast_printer.c)
+        ast_node_visitor.c ast_printer.c code_generator.c)
 
 add_library(libredpanda SHARED ${PROJECT_FILES})
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR} ../../include)

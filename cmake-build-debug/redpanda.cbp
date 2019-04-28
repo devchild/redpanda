@@ -197,6 +197,9 @@
 		<Unit filename="/Users/mario/Projects/redpanda/include/ast_while_statement.h">
 			<Option target="libredpanda"/>
 		</Unit>
+		<Unit filename="/Users/mario/Projects/redpanda/include/code_generator.h">
+			<Option target="libredpanda"/>
+		</Unit>
 		<Unit filename="/Users/mario/Projects/redpanda/include/object.h">
 			<Option target="libredpanda"/>
 		</Unit>
@@ -249,6 +252,9 @@
 			<Option target="libredpanda"/>
 		</Unit>
 		<Unit filename="/Users/mario/Projects/redpanda/lib/redpanda/ast_while_statement.c">
+			<Option target="libredpanda"/>
+		</Unit>
+		<Unit filename="/Users/mario/Projects/redpanda/lib/redpanda/code_generator.c">
 			<Option target="libredpanda"/>
 		</Unit>
 		<Unit filename="/Users/mario/Projects/redpanda/lib/redpanda/object.c">
